@@ -20,8 +20,7 @@
      <height>513</height>
     </size>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-   </layout>
+   <layout class="QVBoxLayout" name="verticalLayout"/>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -29,11 +28,11 @@
      <x>0</x>
      <y>0</y>
      <width>960</width>
-     <height>25</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="nativeMenuBar">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">

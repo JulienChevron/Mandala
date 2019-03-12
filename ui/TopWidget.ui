@@ -46,7 +46,18 @@
     </widget>
    </item>
    <item>
-    <widget class="QComboBox" name="dimension"/>
+    <widget class="QComboBox" name="dimension">
+     <item>
+      <property name="text">
+       <string>400x400</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>600x600</string>
+      </property>
+     </item>
+    </widget>
    </item>
    <item>
     <widget class="QPushButton" name="pushButton">
@@ -72,38 +83,5 @@
   </layout>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>slices_slider</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>spinBox</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>180</x>
-     <y>188</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>280</x>
-     <y>191</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>spinBox</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>slices_slider</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>251</x>
-     <y>203</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>74</x>
-     <y>191</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
