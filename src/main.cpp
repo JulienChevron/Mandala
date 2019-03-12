@@ -1,7 +1,7 @@
 //
 // Created by chopinet on 26/02/19.
 //
-#include "MainWindow.h"
+#include "include/MainWindow.h"
 #include <QApplication>
 
 int main(int argc, char *argv[]) {

@@ -1,10 +1,9 @@
 
-#include "MainWindow.h"
+#include "include/MainWindow.h"
 #include <QtWidgets/QMessageBox>
-#include "BottomWidget.hpp"
-#include "CenterWidget.hpp"
-#include "TopWidget.hpp"
-#include "MainWindow.h"
+#include "include/BottomWidget.hpp"
+#include "include/CenterWidget.hpp"
+#include "include/TopWidget.hpp"
 #include "ui_MainWindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :

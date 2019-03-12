@@ -28,20 +28,16 @@ SOURCES += \
         src/MainWindow.cpp \
     src/BottomWidget.cpp \
     src/CenterWidget.cpp \
-    src/main.cpp \
-    src/MainWindow.cpp \
     src/TopWidget.cpp
 
 HEADERS += \
         include/MainWindow.h \
     include/BottomWidget.hpp \
     include/CenterWidget.hpp \
-    include/MainWindow.h \
     include/TopWidget.hpp
 
 FORMS += \
         ui/MainWindow.ui \
     ui/BottomWidget.ui \
     ui/CenterWidget.ui \
-    ui/MainWindow.ui \
     ui/TopWidget.ui
