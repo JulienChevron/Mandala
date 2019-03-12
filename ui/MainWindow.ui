@@ -21,15 +21,6 @@
     </size>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QWidget" name="Top" native="true"/>
-    </item>
-    <item>
-     <widget class="QWidget" name="Center" native="true"/>
-    </item>
-    <item>
-     <widget class="QWidget" name="Bottom" native="true"/>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">

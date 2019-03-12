@@ -11,9 +11,9 @@ MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::MainWindow) {
     ui->setupUi(this);
-    ui->Top = new TopWidget();
-    ui->Bottom = new BottomWidget(this);
-    ui->Center = new CenterWidget();
+    top = new TopWidget(this);
+    center = new CenterWidget(this);
+    bottom = new BottomWidget(this);
 }
 
 MainWindow::~MainWindow() {

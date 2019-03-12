@@ -18,6 +18,9 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    QWidget * top;
+    QWidget * center;
+    QWidget * bottom;
 
 public slots:
     void displayHelp();
