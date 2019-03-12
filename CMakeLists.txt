@@ -14,7 +14,13 @@ include_directories(include)
 
 add_executable(Mandala
         src/MainWindow.cpp
+        src/BottomWidget.cpp
+        src/CenterWidget.cpp
+        src/TopWidget.cpp
         include/MainWindow.h
+        include/BottomWidget.hpp
+        include/CenterWidget.hpp
+        include/TopWidget.hpp
         ui/MainWindow.ui
         src/main.cpp)
 
