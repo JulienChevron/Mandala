@@ -6,6 +6,9 @@
 #include "CenterWidget.hpp"
 
 
-CenterWidget::CenterWidget(QWidget *parent) {
-
+CenterWidget::CenterWidget(QWidget *parent) :
+        QWidget(parent),
+        ui(new Ui::CenterWidget)
+{
+    ui->setupUi(this);
 }

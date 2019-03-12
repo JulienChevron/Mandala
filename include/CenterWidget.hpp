@@ -7,12 +7,18 @@
 
 
 #include <QtWidgets/QWidget>
+#include "ui_CenterWidget.h"
+
 
 class CenterWidget : public QWidget {
 
 Q_OBJECT
 public:
     explicit CenterWidget(QWidget *parent = 0);
+
+private:
+    Ui::CenterWidget *ui;
+
 
 signals:
 

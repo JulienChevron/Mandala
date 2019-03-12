@@ -4,6 +4,9 @@
 
 #include "BottomWidget.hpp"
 
-BottomWidget::BottomWidget(QWidget *parent) {
-
+BottomWidget::BottomWidget(QWidget *parent) :
+        QWidget(parent),
+        ui(new Ui::BottomWidget)
+{
+    ui->setupUi(this);
 }

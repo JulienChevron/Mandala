@@ -7,12 +7,16 @@
 
 
 #include <QtWidgets/QWidget>
+#include "ui_TopWidget.h"
 
 class TopWidget : public QWidget{
 
 Q_OBJECT
 public:
     TopWidget(QWidget *parent = 0);
+
+private:
+    Ui::TopWidget *ui;
 
 signals:
 

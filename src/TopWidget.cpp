@@ -5,6 +5,9 @@
 #include "TopWidget.hpp"
 
 
-TopWidget::TopWidget(QWidget *parent) {
-
+TopWidget::TopWidget(QWidget *parent) :
+        QWidget(parent),
+        ui(new Ui::TopWidget)
+{
+    ui->setupUi(this);
 }

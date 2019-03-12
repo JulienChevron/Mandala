@@ -7,12 +7,16 @@
 
 
 #include <QtWidgets/QWidget>
+#include "ui_BottomWidget.h"
 
 class BottomWidget : public QWidget {
 
     Q_OBJECT
 public:
     explicit BottomWidget(QWidget *parent = 0);
+
+private:
+    Ui::BottomWidget *ui;
 
 signals:
 

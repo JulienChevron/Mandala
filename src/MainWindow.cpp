@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
         ui(new Ui::MainWindow) {
     ui->setupUi(this);
     ui->Top = new TopWidget();
-    ui->Bottom = new BottomWidget();
+    ui->Bottom = new BottomWidget(this);
     ui->Center = new CenterWidget();
 }
 
