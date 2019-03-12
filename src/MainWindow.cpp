@@ -1,3 +1,6 @@
+
+#include "MainWindow.h"
+#include <QtWidgets/QMessageBox>
 #include "BottomWidget.hpp"
 #include "CenterWidget.hpp"
 #include "TopWidget.hpp"
@@ -15,4 +18,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow() {
     delete ui;
+}
+
+void MainWindow::displayHelp() {
+    QMessageBox::information(
+                this,
+                tr("About NeslonMandala"),
+                tr("NelsonMandala : The best Mandala open source project\n"
+                   "(C) 2019 CCC Development Team") );
+}
+
+void MainWindow::exit(){
+    QApplication::quit();
 }
