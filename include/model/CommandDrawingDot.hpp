@@ -9,11 +9,11 @@
 
 class CommandDrawingDot : public CommandDrawing {
 public:
-    CommandDrawingDot(QPainter &painter, const QPoint &coord, const QPen &pen);
+    CommandDrawingDot(const QPoint &coord, const QPen &pen);
 
-    void draw() override;
+    void draw(QPainter &painter) override;
 
-    void undo() override;
+    void undo(QPainter &painter) override;
 
 private:
     const QPoint &coord;

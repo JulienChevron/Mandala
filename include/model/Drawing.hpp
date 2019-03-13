@@ -6,8 +6,17 @@
 #define MANDALA_DRAWING_HPP
 
 
-class Drawing {
+#include <list>
+#include "CommandDrawing.hpp"
 
+class Drawing {
+public:
+    Drawing();
+
+    void drawAll(QPainter &painter);
+    void draw(QPainter &painter, CommandDrawing &commandDrawing);
+private:
+    std::list<CommandDrawing> listCommand;
 };
 
 

@@ -4,16 +4,16 @@
 
 #include "include/model/CommandDrawingDot.hpp"
 
-void CommandDrawingDot::draw() {
+void CommandDrawingDot::draw(QPainter &painter) {
     painter.save();
     painter.setPen(pen);
     painter.drawPoint(this->coord);
 }
 
-void CommandDrawingDot::undo() {
+void CommandDrawingDot::undo(QPainter &painter) {
     painter.restore();
 }
 
-CommandDrawingDot::CommandDrawingDot(QPainter &painter, const QPoint &coord, const QPen &pen) : CommandDrawing(painter),
-                                                                                                coord(coord),
-                                                                                                pen(pen) {}
+CommandDrawingDot::CommandDrawingDot(const QPoint &coord, const QPen &pen) :
+        coord(coord),
+        pen(pen) {}
