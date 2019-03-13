@@ -8,9 +8,9 @@
 
 #include <QtGui/QPainter>
 
-class CommandDrawing {
+class CommandDraw {
 public:
-    explicit CommandDrawing();
+    explicit CommandDraw();
     virtual void draw_command(QPainter & painter);
     virtual void undo_command(QPainter & painter);
 protected:

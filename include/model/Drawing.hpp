@@ -8,7 +8,7 @@
 
 #include <list>
 #include <memory>
-#include "CommandDrawing.hpp"
+#include "CommandDraw.hpp"
 
 class Drawing {
 public:
@@ -17,9 +17,9 @@ public:
     virtual ~Drawing();
 
     void drawAll(QPainter &painter);
-    void draw(QPainter &painter, CommandDrawing &commandDrawing);
+    void draw(QPainter &painter, CommandDraw &commandDrawing);
 private:
-    std::list<CommandDrawing*> listCommand;
+    std::list<CommandDraw*> listCommand;
 };
 
 

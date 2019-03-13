@@ -5,11 +5,11 @@
 #ifndef MANDALA_COMMANDDRAWINGPOINT_HPP
 #define MANDALA_COMMANDDRAWINGPOINT_HPP
 
-#include "model/CommandDrawing.hpp"
+#include "model/CommandDraw.hpp"
 
-class CommandDrawingDot : public CommandDrawing {
+class CommandDrawDot : public CommandDraw {
 public:
-    CommandDrawingDot(const QPoint &coord, const QPen &pen);
+    CommandDrawDot(const QPoint &coord, const QPen &pen);
 
     void draw(QPainter &painter) override;
 

@@ -19,6 +19,6 @@ file(GLOB SRC
         "include/view/*.hpp"
         "ui/*.ui"
         )
-add_executable(Mandala ${SRC})
+add_executable(Mandala ${SRC} src/model/CommandDrawLine.cpp include/model/CommandDrawLine.hpp)
 
 target_link_libraries(${CMAKE_PROJECT_NAME} Qt5::Widgets)

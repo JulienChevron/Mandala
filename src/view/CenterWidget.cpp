@@ -8,14 +8,13 @@
 #include <QtWidgets/QGraphicsScene>
 #include <QtWidgets/QGraphicsView>
 #include <include/view/CenterWidget.hpp>
-
-#include "include/view/CenterWidget.hpp"
+#include <include/model/CommandDrawLine.hpp>
+#include <iostream>
 
 
 CenterWidget::CenterWidget(QWidget *parent) :
         QWidget(parent),
-        ui(new Ui::CenterWidget)
-{
+        ui(new Ui::CenterWidget) {
     ui->setupUi(this);
     setAttribute(Qt::WA_StaticContents);
     modified = false;
@@ -25,8 +24,7 @@ CenterWidget::CenterWidget(QWidget *parent) :
 
 }
 
-bool CenterWidget::openImage(const QString &fileName)
-{
+bool CenterWidget::openImage(const QString &fileName) {
     QImage loadedImage;
     if (!loadedImage.load(fileName))
         return false;
@@ -39,8 +37,7 @@ bool CenterWidget::openImage(const QString &fileName)
     return true;
 }
 
-bool CenterWidget::saveImage(const QString &fileName, const char *fileFormat)
-{
+bool CenterWidget::saveImage(const QString &fileName, const char *fileFormat) {
     QImage visibleImage = image;
     resizeImage(&visibleImage, size());
 
@@ -52,54 +49,46 @@ bool CenterWidget::saveImage(const QString &fileName, const char *fileFormat)
     }
 }
 
-void CenterWidget::setPenColor(const QColor &newColor)
-{
+void CenterWidget::setPenColor(const QColor &newColor) {
     myPenColor = newColor;
 }
 
-void CenterWidget::setPenWidth(int newWidth)
-{
+void CenterWidget::setPenWidth(int newWidth) {
     myPenWidth = newWidth;
 }
 
-void CenterWidget::clearImage()
-{
+void CenterWidget::clearImage() {
     image.fill(qRgb(255, 255, 255));
     modified = true;
     update();
 }
 
-void CenterWidget::mousePressEvent(QMouseEvent *event)
-{
+void CenterWidget::mousePressEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton) {
         lastPoint = event->pos();
         scribbling = true;
     }
 }
 
-void CenterWidget::mouseMoveEvent(QMouseEvent *event)
-{
+void CenterWidget::mouseMoveEvent(QMouseEvent *event) {
     if ((event->buttons() & Qt::LeftButton) && scribbling)
         drawLineTo(event->pos());
 }
 
-void CenterWidget::mouseReleaseEvent(QMouseEvent *event)
-{
+void CenterWidget::mouseReleaseEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton && scribbling) {
         drawLineTo(event->pos());
         scribbling = false;
     }
 }
 
-void CenterWidget::paintEvent(QPaintEvent *event)
-{
+void CenterWidget::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
     QRect dirtyRect = event->rect();
     painter.drawImage(dirtyRect, image, dirtyRect);
 }
 
-void CenterWidget::resizeEvent(QResizeEvent *event)
-{
+void CenterWidget::resizeEvent(QResizeEvent *event) {
     if (width() > image.width() || height() > image.height()) {
         int newWidth = qMax(width() + 128, image.width());
         int newHeight = qMax(height() + 128, image.height());
@@ -109,12 +98,15 @@ void CenterWidget::resizeEvent(QResizeEvent *event)
     QWidget::resizeEvent(event);
 }
 
-void CenterWidget::drawLineTo(const QPoint &endPoint)
-{
+void CenterWidget::drawLineTo(const QPoint &endPoint) {
     QPainter painter(&image);
-    painter.setPen(QPen(myPenColor, myPenWidth, Qt::SolidLine, Qt::RoundCap,
+    QPen pen(myPenColor, myPenWidth, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);//TODO USE GLOBAL PEN
+    CommandDrawLine c(lastPoint, endPoint, pen);
+    c.draw_command(painter);
+
+    /*painter.setPen(QPen(myPenColor, myPenWidth, Qt::SolidLine, Qt::RoundCap,
                         Qt::RoundJoin));
-    painter.drawLine(lastPoint, endPoint);
+    painter.drawLine(lastPoint, endPoint);*/
     modified = true;
 
     int rad = (myPenWidth / 2) + 2;
@@ -123,8 +115,7 @@ void CenterWidget::drawLineTo(const QPoint &endPoint)
     lastPoint = endPoint;
 }
 
-void CenterWidget::resizeImage(QImage *image, const QSize &newSize)
-{
+void CenterWidget::resizeImage(QImage *image, const QSize &newSize) {
     if (image->size() == newSize)
         return;
 

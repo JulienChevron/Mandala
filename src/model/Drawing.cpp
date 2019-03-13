@@ -11,7 +11,7 @@ void Drawing::drawAll(QPainter &painter) {
     }
 }
 
-void Drawing::draw(QPainter &painter, CommandDrawing &commandDrawing) {
+void Drawing::draw(QPainter &painter, CommandDraw &commandDrawing) {
     commandDrawing.draw_command(painter);
     listCommand.push_back(&commandDrawing);
 }
