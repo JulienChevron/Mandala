@@ -7,6 +7,7 @@
 
 
 #include <QtWidgets/QWidget>
+#include <QtGui/QPen>
 #include "ui_BottomWidget.h"
 
 class BottomWidget : public QWidget {
@@ -17,10 +18,16 @@ public:
 
 private:
     Ui::BottomWidget *ui;
+    QPen *pen;
+    bool ranbow;
+    void setColor(QColor color);
 
 signals:
 
 public slots:
+    void setLineWidth(int lineWidth);
+    void chooseColor();
+    void setRainbow(bool rainbow);
 
 
 };
