@@ -18,6 +18,8 @@ public:
 
 private:
     Ui::CenterWidget *ui;
+    QPainter *painter;
+    void paintEvent(QPaintEvent *event) override;
 
 
 signals:

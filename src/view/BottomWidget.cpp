@@ -21,7 +21,7 @@ void BottomWidget::setLineWidth(int lineWidth) {
 }
 
 void BottomWidget::chooseColor() {
-    QColor choosenColor = QColorDialog::getColor(Qt::black, this );
+    QColor choosenColor = QColorDialog::getColor(Qt::black, this);
     if(choosenColor.isValid()){
         setColor(choosenColor);
     }
