@@ -2,8 +2,6 @@
 // Created by chevron on 13/03/19.
 //
 
-#include <include/model/Drawing.hpp>
-
 #include "include/model/Drawing.hpp"
 
 void Drawing::drawAll(QPainter &painter) {
