@@ -3,7 +3,7 @@
 // Created by chevron on 12/03/19.
 //
 
-#include "include/CenterWidget.hpp"
+#include "include/view/CenterWidget.hpp"
 
 
 CenterWidget::CenterWidget(QWidget *parent) :

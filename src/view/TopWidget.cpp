@@ -2,7 +2,7 @@
 // Created by chevron on 12/03/19.
 //
 
-#include "include/TopWidget.hpp"
+#include "include/view/TopWidget.hpp"
 
 
 TopWidget::TopWidget(QWidget *parent) :

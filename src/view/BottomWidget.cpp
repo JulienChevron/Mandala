@@ -2,7 +2,7 @@
 // Created by chevron on 12/03/19.
 //
 
-#include "include/BottomWidget.hpp"
+#include "include/view/BottomWidget.hpp"
 
 BottomWidget::BottomWidget(QWidget *parent) :
         QWidget(parent),

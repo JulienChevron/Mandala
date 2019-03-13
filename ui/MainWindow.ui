@@ -150,19 +150,19 @@
   <customwidget>
    <class>BottomWidget</class>
    <extends>QWidget</extends>
-   <header>BottomWidget.hpp</header>
+   <header>view/BottomWidget.hpp</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>CenterWidget</class>
    <extends>QWidget</extends>
-   <header>CenterWidget.hpp</header>
+   <header>view/CenterWidget.hpp</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>TopWidget</class>
    <extends>QWidget</extends>
-   <header>TopWidget.hpp</header>
+   <header>view/TopWidget.hpp</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

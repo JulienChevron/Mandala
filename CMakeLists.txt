@@ -13,15 +13,15 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
 include_directories(include)
 
 add_executable(Mandala
-        src/MainWindow.cpp
-        src/BottomWidget.cpp
-        src/CenterWidget.cpp
-        src/TopWidget.cpp
-        include/MainWindow.hpp
-        include/BottomWidget.hpp
-        include/CenterWidget.hpp
-        include/TopWidget.hpp
+        src/view/MainWindow.cpp
+        src/view/BottomWidget.cpp
+        src/view/CenterWidget.cpp
+        src/view/TopWidget.cpp
+        include/view/MainWindow.hpp
+        include/view/BottomWidget.hpp
+        include/view/CenterWidget.hpp
+        include/view/TopWidget.hpp
         ui/MainWindow.ui
-        src/main.cpp)
+        src/view/main.cpp)
 
 target_link_libraries(${CMAKE_PROJECT_NAME} Qt5::Widgets)
