@@ -1,5 +1,5 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef MAINWINDOW_HPP
+#define MAINWINDOW_HPP
 
 #include <QMainWindow>
 #include <QPainter>
@@ -18,13 +18,10 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    QWidget * top;
-    QWidget * center;
-    QWidget * bottom;
 
 public slots:
     void displayHelp();
     void exit();
 };
 
-#endif // MAINWINDOW_H
+#endif // MAINWINDOW_HPP

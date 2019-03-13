@@ -1,5 +1,5 @@
 
-#include "include/MainWindow.h"
+#include "include/MainWindow.hpp"
 #include <QtWidgets/QMessageBox>
 #include "include/BottomWidget.hpp"
 #include "include/CenterWidget.hpp"
@@ -10,9 +10,6 @@ MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::MainWindow) {
     ui->setupUi(this);
-    top = new TopWidget(this);
-    center = new CenterWidget(this);
-    bottom = new BottomWidget(this);
 }
 
 MainWindow::~MainWindow() {

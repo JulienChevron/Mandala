@@ -17,7 +17,7 @@ add_executable(Mandala
         src/BottomWidget.cpp
         src/CenterWidget.cpp
         src/TopWidget.cpp
-        include/MainWindow.h
+        include/MainWindow.hpp
         include/BottomWidget.hpp
         include/CenterWidget.hpp
         include/TopWidget.hpp
