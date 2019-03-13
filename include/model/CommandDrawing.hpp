@@ -11,7 +11,9 @@
 class CommandDrawing: public QObject {
 public:
     explicit CommandDrawing();
-
+    void draw_command(QPainter & painter);
+    void undo_command(QPainter & painter);
+protected:
     virtual void draw(QPainter &painter) = 0;
 
     virtual void undo(QPainter &painter) = 0;

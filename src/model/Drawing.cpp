@@ -7,12 +7,12 @@
 void Drawing::drawAll(QPainter &painter) {
     auto end = listCommand.end();
     for (auto it = listCommand.begin(); it != end; ++it) {
-        (*it).draw(painter);
+        (*it).draw_command(painter);
     }
 }
 
 void Drawing::draw(QPainter &painter, CommandDrawing &commandDrawing) {
-    commandDrawing.draw(painter);
+    commandDrawing.draw_command(painter);
     listCommand.push_back(commandDrawing);
 }
 
