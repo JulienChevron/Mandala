@@ -7,14 +7,21 @@
 void Drawing::drawAll(QPainter &painter) {
     auto end = listCommand.end();
     for (auto it = listCommand.begin(); it != end; ++it) {
-        (*it).draw_command(painter);
+        (*it)->draw_command(painter);
     }
 }
 
 void Drawing::draw(QPainter &painter, CommandDrawing &commandDrawing) {
     commandDrawing.draw_command(painter);
-    listCommand.push_back(commandDrawing);
+    listCommand.push_back(&commandDrawing);
 }
 
 Drawing::Drawing() : listCommand() {
+}
+
+Drawing::~Drawing() {
+    auto end = listCommand.end();
+    for (auto it = listCommand.begin(); it != end; ++it) {
+        delete *it;//TODO FIX THAT
+    }
 }

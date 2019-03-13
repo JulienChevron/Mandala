@@ -8,11 +8,11 @@
 
 #include <QtGui/QPainter>
 
-class CommandDrawing: public QObject {
+class CommandDrawing {
 public:
     explicit CommandDrawing();
-    void draw_command(QPainter & painter);
-    void undo_command(QPainter & painter);
+    virtual void draw_command(QPainter & painter);
+    virtual void undo_command(QPainter & painter);
 protected:
     virtual void draw(QPainter &painter) = 0;
 

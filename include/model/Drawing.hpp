@@ -7,16 +7,19 @@
 
 
 #include <list>
+#include <memory>
 #include "CommandDrawing.hpp"
 
 class Drawing {
 public:
     Drawing();
 
+    virtual ~Drawing();
+
     void drawAll(QPainter &painter);
     void draw(QPainter &painter, CommandDrawing &commandDrawing);
 private:
-    std::list<CommandDrawing> listCommand;
+    std::list<CommandDrawing*> listCommand;
 };
 
 
