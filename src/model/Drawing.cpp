@@ -2,26 +2,38 @@
 // Created by chevron on 13/03/19.
 //
 
+#include <include/model/Drawing.hpp>
+
 #include "include/model/Drawing.hpp"
 
-void Drawing::drawAll(QPainter &painter) {
-    auto end = listCommand.end();
-    for (auto it = listCommand.begin(); it != end; ++it) {
-        (*it)->draw_command(painter);
-    }
-}
-
-void Drawing::draw(QPainter &painter, CommandDraw &commandDrawing) {
+void Drawing::draw(CommandDraw &commandDrawing) {
+    stackImageUndo.push(currentImage);
+    QPainter painter(&currentImage);
     commandDrawing.draw_command(painter);
-    listCommand.push_back(&commandDrawing);
 }
 
-Drawing::Drawing() : listCommand() {
+Drawing::Drawing() : stackImageUndo(), stackImageRedo() {
 }
 
 Drawing::~Drawing() {
-    auto end = listCommand.end();
-    for (auto it = listCommand.begin(); it != end; ++it) {
-        delete *it;//TODO FIX THAT
-    }
+}
+
+void Drawing::undo() {
+    stackImageRedo.push(currentImage);
+    currentImage = stackImageUndo.top();
+    stackImageUndo.pop();
+}
+
+void Drawing::redo() {
+    stackImageUndo.push(currentImage);
+    currentImage = stackImageRedo.top();
+    stackImageRedo.pop();
+}
+
+QImage & Drawing::getCurrentImage() {
+    return currentImage;
+}
+
+void Drawing::setCurrentImage(const QImage &currentImage) {
+    this->currentImage = currentImage;
 }

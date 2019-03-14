@@ -6,7 +6,7 @@
 #define MANDALA_DRAWING_HPP
 
 
-#include <list>
+#include <stack>
 #include <memory>
 #include "CommandDraw.hpp"
 
@@ -16,10 +16,20 @@ public:
 
     virtual ~Drawing();
 
-    void drawAll(QPainter &painter);
-    void draw(QPainter &painter, CommandDraw &commandDrawing);
+    void draw(CommandDraw &commandDrawing);
+
+    void undo();
+    void redo();
+
+    QImage & getCurrentImage();
+
+    void setCurrentImage(const QImage &currentImage);
+
 private:
-    std::list<CommandDraw*> listCommand;
+    QImage currentImage;
+    std::stack<QImage> stackImageUndo;
+    std::stack<QImage> stackImageRedo;
+
 };
 
 

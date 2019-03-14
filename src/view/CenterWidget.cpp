@@ -21,7 +21,6 @@ CenterWidget::CenterWidget(QWidget *parent) :
     scribbling = false;
     myPenWidth = 1;
     myPenColor = Qt::black;
-
 }
 
 bool CenterWidget::openImage(const QString &fileName) {
@@ -31,14 +30,14 @@ bool CenterWidget::openImage(const QString &fileName) {
 
     QSize newSize = loadedImage.size().expandedTo(size());
     resizeImage(&loadedImage, newSize);
-    image = loadedImage;
+    commandInvoker.setCurrentImage(loadedImage);
     modified = false;
     update();
     return true;
 }
 
 bool CenterWidget::saveImage(const QString &fileName, const char *fileFormat) {
-    QImage visibleImage = image;
+    QImage visibleImage = commandInvoker.getCurrentImage();
     resizeImage(&visibleImage, size());
 
     if (visibleImage.save(fileName, fileFormat)) {
@@ -58,7 +57,7 @@ void CenterWidget::setPenWidth(int newWidth) {
 }
 
 void CenterWidget::clearImage() {
-    image.fill(qRgb(255, 255, 255));
+    commandInvoker.getCurrentImage().fill(qRgb(255, 255, 255));
     modified = true;
     update();
 }
@@ -85,28 +84,25 @@ void CenterWidget::mouseReleaseEvent(QMouseEvent *event) {
 void CenterWidget::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
     QRect dirtyRect = event->rect();
-    painter.drawImage(dirtyRect, image, dirtyRect);
+    painter.drawImage(dirtyRect, commandInvoker.getCurrentImage(), dirtyRect);
 }
 
 void CenterWidget::resizeEvent(QResizeEvent *event) {
-    if (width() > image.width() || height() > image.height()) {
-        int newWidth = qMax(width() + 128, image.width());
-        int newHeight = qMax(height() + 128, image.height());
-        resizeImage(&image, QSize(newWidth, newHeight));
+    if (width() > commandInvoker.getCurrentImage().width() || height() > commandInvoker.getCurrentImage().height()) {
+        int newWidth = qMax(width() + 128, commandInvoker.getCurrentImage().width());
+        int newHeight = qMax(height() + 128, commandInvoker.getCurrentImage().height());
+        resizeImage(&commandInvoker.getCurrentImage(), QSize(newWidth, newHeight));
         update();
     }
     QWidget::resizeEvent(event);
 }
 
 void CenterWidget::drawLineTo(const QPoint &endPoint) {
-    QPainter painter(&image);
     QPen pen(myPenColor, myPenWidth, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);//TODO USE GLOBAL PEN
-    CommandDrawLine c(lastPoint, endPoint, pen);
-    c.draw_command(painter);
 
-    /*painter.setPen(QPen(myPenColor, myPenWidth, Qt::SolidLine, Qt::RoundCap,
-                        Qt::RoundJoin));
-    painter.drawLine(lastPoint, endPoint);*/
+    CommandDrawLine c(lastPoint, endPoint, pen);
+    commandInvoker.draw(c);
+    //c.draw_command(painter);
     modified = true;
 
     int rad = (myPenWidth / 2) + 2;

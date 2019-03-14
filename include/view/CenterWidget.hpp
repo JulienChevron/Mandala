@@ -10,6 +10,7 @@
 #include <QImage>
 #include <QPoint>
 #include <QWidget>
+#include <include/model/Drawing.hpp>
 #include "ui_CenterWidget.h"
 
 
@@ -32,8 +33,8 @@ private:
     bool scribbling;
     int myPenWidth;
     QColor myPenColor;
-    QImage image;
     QPoint lastPoint;
+    Drawing commandInvoker;
 
     void drawLineTo(const QPoint &endPoint);
     void resizeImage(QImage *image, const QSize &newSize);
