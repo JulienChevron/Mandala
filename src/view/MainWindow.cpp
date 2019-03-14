@@ -10,6 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::MainWindow) {
     ui->setupUi(this);
+    connect(ui->actionUndo, SIGNAL(triggered()), ui->center, SLOT(undo()));
+    connect(ui->actionRedo, SIGNAL(triggered()), ui->center, SLOT(redo()));
+
 }
 
 MainWindow::~MainWindow() {
@@ -18,12 +21,12 @@ MainWindow::~MainWindow() {
 
 void MainWindow::displayHelp() {
     QMessageBox::information(
-                this,
-                tr("About NeslonMandala"),
-                tr("NelsonMandala : The best Mandala open source project\n"
-                   "(C) 2019 CCC Development Team") );
+            this,
+            tr("About NeslonMandala"),
+            tr("NelsonMandala : The best Mandala open source project\n"
+               "(C) 2019 CCC Development Team"));
 }
 
-void MainWindow::exit(){
+void MainWindow::exit() {
     QApplication::quit();
 }

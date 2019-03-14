@@ -29,7 +29,9 @@ void Drawing::undo() {
         dequeImageRedo.erase(dequeImageRedo.begin());
     }
     currentImage = dequeImageUndo.back();
-    dequeImageUndo.erase(dequeImageUndo.end());
+    if (!dequeImageUndo.empty()) {
+        dequeImageUndo.erase(dequeImageUndo.end());
+    }
 }
 
 void Drawing::redo() {
@@ -38,7 +40,9 @@ void Drawing::redo() {
         dequeImageUndo.erase(dequeImageUndo.begin());
     }
     currentImage = dequeImageRedo.back();
-    dequeImageRedo.erase(dequeImageRedo.end());
+    if (!dequeImageRedo.empty()){
+        dequeImageRedo.erase(dequeImageRedo.end());
+    }
 }
 
 QImage &Drawing::getCurrentImage() {

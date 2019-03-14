@@ -121,3 +121,15 @@ void CenterWidget::resizeImage(QImage *image, const QSize &newSize) {
     painter.drawImage(QPoint(0, 0), *image);
     *image = newImage;
 }
+
+void CenterWidget::undo() {
+    std::cout << "undo" << std::endl;
+    commandInvoker.undo();
+    update();
+}
+
+void CenterWidget::redo() {
+    std::cout << "redo" << std::endl;
+    commandInvoker.redo();
+    update();
+}

@@ -52,7 +52,8 @@ signals:
 
 public slots:
     void clearImage();
-
+    void undo();
+    void redo();
 };
 
 
