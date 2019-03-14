@@ -27,8 +27,8 @@ public:
 
 private:
     QImage currentImage;
-    std::stack<QImage> stackImageUndo;
-    std::stack<QImage> stackImageRedo;
+    std::deque<QImage> dequeImageUndo;
+    std::deque<QImage> dequeImageRedo;
 
 };
 

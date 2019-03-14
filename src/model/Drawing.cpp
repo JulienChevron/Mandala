@@ -6,31 +6,42 @@
 
 #include "include/model/Drawing.hpp"
 
+#define MAX_UNDO 100
+
 void Drawing::draw(CommandDraw &commandDrawing) {
-    stackImageUndo.push(currentImage);
+    dequeImageUndo.push_back(currentImage);
+    if (dequeImageUndo.size() > MAX_UNDO) {
+        dequeImageUndo.erase(dequeImageUndo.begin());
+    }
     QPainter painter(&currentImage);
     commandDrawing.draw_command(painter);
 }
 
-Drawing::Drawing() : stackImageUndo(), stackImageRedo() {
+Drawing::Drawing() : dequeImageUndo(), dequeImageRedo() {
 }
 
 Drawing::~Drawing() {
 }
 
 void Drawing::undo() {
-    stackImageRedo.push(currentImage);
-    currentImage = stackImageUndo.top();
-    stackImageUndo.pop();
+    dequeImageRedo.push_back(currentImage);
+    if (dequeImageRedo.size() > MAX_UNDO) {
+        dequeImageRedo.erase(dequeImageRedo.begin());
+    }
+    currentImage = dequeImageUndo.back();
+    dequeImageUndo.erase(dequeImageUndo.end());
 }
 
 void Drawing::redo() {
-    stackImageUndo.push(currentImage);
-    currentImage = stackImageRedo.top();
-    stackImageRedo.pop();
+    dequeImageUndo.push_back(currentImage);
+    if (dequeImageUndo.size() > MAX_UNDO) {
+        dequeImageUndo.erase(dequeImageUndo.begin());
+    }
+    currentImage = dequeImageRedo.back();
+    dequeImageRedo.erase(dequeImageRedo.end());
 }
 
-QImage & Drawing::getCurrentImage() {
+QImage &Drawing::getCurrentImage() {
     return currentImage;
 }
 
