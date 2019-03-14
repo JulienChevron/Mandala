@@ -3,8 +3,7 @@
 //
 
 #include <include/model/Drawing.hpp>
-
-#include "include/model/Drawing.hpp"
+#include <iostream>
 
 #define MAX_UNDO 100
 
@@ -28,8 +27,8 @@ void Drawing::undo() {
     if (dequeImageRedo.size() > MAX_UNDO) {
         dequeImageRedo.erase(dequeImageRedo.begin());
     }
-    currentImage = dequeImageUndo.back();
     if (!dequeImageUndo.empty()) {
+        currentImage = dequeImageUndo.back();
         dequeImageUndo.erase(dequeImageUndo.end());
     }
 }
@@ -39,8 +38,8 @@ void Drawing::redo() {
     if (dequeImageUndo.size() > MAX_UNDO) {
         dequeImageUndo.erase(dequeImageUndo.begin());
     }
-    currentImage = dequeImageRedo.back();
-    if (!dequeImageRedo.empty()){
+    if (!dequeImageRedo.empty()) {
+        currentImage = dequeImageRedo.back();
         dequeImageRedo.erase(dequeImageRedo.end());
     }
 }
