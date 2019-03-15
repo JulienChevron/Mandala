@@ -11,3 +11,7 @@ TopWidget::TopWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 }
+
+Ui::TopWidget *TopWidget::getUi() const {
+    return ui;
+}

@@ -17,6 +17,8 @@ public:
 
 private:
     Ui::TopWidget *ui;
+public:
+    Ui::TopWidget *getUi() const;
 
 signals:
 

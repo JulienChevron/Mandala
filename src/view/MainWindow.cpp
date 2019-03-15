@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionUndo, SIGNAL(triggered()), ui->center, SLOT(undo()));
     connect(ui->actionRedo, SIGNAL(triggered()), ui->center, SLOT(redo()));
     connect(ui->actionSave_as, SIGNAL(triggered()), ui->center, SLOT(saveCurrentImage()));
+    connect(ui->top->getUi()->clearButton, SIGNAL(pressed()), ui->center, SLOT(clearImage()));
 }
 
 MainWindow::~MainWindow() {
