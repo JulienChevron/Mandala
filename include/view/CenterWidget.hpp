@@ -31,8 +31,7 @@ private:
     QPoint lastPoint;
     Drawing commandInvoker;
     QPen *pen;
-    int imgWidth;
-    int imgHeight;
+    QSize *imgSize;
     bool grid;
     int gridNumber;
     int gridOpacity;
@@ -58,7 +57,7 @@ public slots:
     void undo();
     void redo();
     void saveCurrentImage();
-    void resizeImage(int width, int height);
+    void setSize(QSize* size);
     void setGrid(bool grid);
     void setGridSlice(int number);
     void setGridOpacity(int opacity);

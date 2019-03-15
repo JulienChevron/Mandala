@@ -129,10 +129,10 @@ void CenterWidget::saveCurrentImage() {
     saveImage(fileName);
 }
 
-void CenterWidget::resizeImage(int width, int height) {
-    std::cout << "set grid size to : " << width << "x" << height << std::endl;
-    this->imgWidth = width;
-    this->imgHeight = height;
+void CenterWidget::setSize(QSize* size) {
+    this->imgSize = size;
+    resizeImage(&commandInvoker.getCurrentImage(), *size);
+    update();
 }
 
 

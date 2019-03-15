@@ -46,18 +46,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QComboBox" name="dimension">
-     <item>
-      <property name="text">
-       <string>400x400</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>600x600</string>
-      </property>
-     </item>
-    </widget>
+    <widget class="QComboBox" name="dimension"/>
    </item>
    <item>
     <widget class="QPushButton" name="clearButton">
@@ -113,6 +102,22 @@
     <hint type="destinationlabel">
      <x>168</x>
      <y>31</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dimension</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>TopWidget</receiver>
+   <slot>updateSize(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>427</x>
+     <y>38</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>412</x>
+     <y>38</y>
     </hint>
    </hints>
   </connection>

@@ -21,8 +21,10 @@ public:
     Ui::TopWidget *getUi() const;
 
 signals:
+    void sendSize(QSize*);
 
 public slots:
+    void updateSize(int index);
 
 };
 
