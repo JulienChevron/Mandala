@@ -20,7 +20,7 @@ Q_OBJECT
 public:
     explicit CenterWidget(QWidget *parent = 0);
     bool openImage(const QString &fileName);
-    bool saveImage(const QString &fileName, const char *fileFormat);
+    bool saveImage(const QString &fileName);
     void setPenColor(const QColor &newColor);
     void setPenWidth(int newWidth);
     bool isModified() const { return modified; }
@@ -54,6 +54,7 @@ public slots:
     void clearImage();
     void undo();
     void redo();
+    void saveCurrentImage();
 };
 
 

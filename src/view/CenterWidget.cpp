@@ -10,6 +10,7 @@
 #include <include/view/CenterWidget.hpp>
 #include <include/model/CommandDrawLine.hpp>
 #include <iostream>
+#include <QtWidgets/QFileDialog>
 
 
 CenterWidget::CenterWidget(QWidget *parent) :
@@ -36,11 +37,10 @@ bool CenterWidget::openImage(const QString &fileName) {
     return true;
 }
 
-bool CenterWidget::saveImage(const QString &fileName, const char *fileFormat) {
+bool CenterWidget::saveImage(const QString &fileName) {
     QImage visibleImage = commandInvoker.getCurrentImage();
     resizeImage(&visibleImage, size());
-
-    if (visibleImage.save(fileName, fileFormat)) {
+    if (visibleImage.save(fileName)) {
         modified = false;
         return true;
     } else {
@@ -133,4 +133,10 @@ void CenterWidget::redo() {
     std::cout << "redo" << std::endl;
     commandInvoker.redo();
     update();
+}
+
+void CenterWidget::saveCurrentImage() {
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Image"), tr("image.png"), tr("Images (*.png *.jpg)"));
+    std::cout << fileName.toStdString() << std::endl;
+    saveImage(fileName);
 }

@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     connect(ui->actionUndo, SIGNAL(triggered()), ui->center, SLOT(undo()));
     connect(ui->actionRedo, SIGNAL(triggered()), ui->center, SLOT(redo()));
-
+    connect(ui->actionSave_as, SIGNAL(triggered()), ui->center, SLOT(saveCurrentImage()));
 }
 
 MainWindow::~MainWindow() {
