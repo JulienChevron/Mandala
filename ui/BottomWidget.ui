@@ -22,7 +22,20 @@
     </widget>
    </item>
    <item>
-    <widget class="QWidget" name="line_width_painter" native="true"/>
+    <widget class="QGraphicsView" name="graphicsView">
+     <property name="minimumSize">
+      <size>
+       <width>50</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>50</width>
+       <height>50</height>
+      </size>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QSlider" name="line_slider">

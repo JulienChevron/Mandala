@@ -20,10 +20,6 @@ CenterWidget::CenterWidget(QWidget *parent) :
         ui(new Ui::CenterWidget) {
     ui->setupUi(this);
     setAttribute(Qt::WA_StaticContents);
-    modified = false;
-    scribbling = false;
-    myPenColor = Qt::black;
-
 }
 
 bool CenterWidget::openImage(const QString &fileName) {
@@ -34,7 +30,6 @@ bool CenterWidget::openImage(const QString &fileName) {
     QSize newSize = loadedImage.size().expandedTo(size());
     resizeImage(&loadedImage, newSize);
     commandInvoker.setCurrentImage(loadedImage);
-    modified = false;
     update();
     return true;
 }
@@ -42,37 +37,29 @@ bool CenterWidget::openImage(const QString &fileName) {
 bool CenterWidget::saveImage(const QString &fileName) {
     QImage visibleImage = commandInvoker.getCurrentImage();
     resizeImage(&visibleImage, size());
-    if (visibleImage.save(fileName)) {
-        modified = false;
-        return true;
-    } else {
-        return false;
-    }
+    return visibleImage.save(fileName);
 }
 
 void CenterWidget::clearImage() {
     commandInvoker.getCurrentImage().fill(qRgb(255, 255, 255));
-    modified = true;
     update();
 }
 
 void CenterWidget::mousePressEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton) {
         lastPoint = event->pos();
-        scribbling = true;
         commandInvoker.save();
     }
 }
 
 void CenterWidget::mouseMoveEvent(QMouseEvent *event) {
-    if ((event->buttons() & Qt::LeftButton) && scribbling)
+    if ((event->buttons() & Qt::LeftButton))
         drawLineTo(event->pos());
 }
 
 void CenterWidget::mouseReleaseEvent(QMouseEvent *event) {
-    if (event->button() == Qt::LeftButton && scribbling) {
+    if (event->button() == Qt::LeftButton) {
         drawLineTo(event->pos());
-        scribbling = false;
     }
 }
 
@@ -86,7 +73,6 @@ void CenterWidget::drawLineTo(const QPoint &endPoint) {
 
     CommandDrawLine c(lastPoint, endPoint, *pen);
     commandInvoker.draw(c);
-    modified = true;
     update();
     lastPoint = endPoint;
 }
@@ -94,7 +80,6 @@ void CenterWidget::drawLineTo(const QPoint &endPoint) {
 void CenterWidget::resizeImage(QImage *image, const QSize &newSize) {
     if (image->size() == newSize)
         return;
-
     QImage newImage(newSize, QImage::Format_RGB32);
     newImage.fill(qRgb(255, 255, 255));
     QPainter painter(&newImage);

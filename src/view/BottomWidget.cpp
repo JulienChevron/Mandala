@@ -15,10 +15,14 @@ BottomWidget::BottomWidget(QWidget *parent) :
         ui(new Ui::BottomWidget)
 {
     ui->setupUi(this);
+    dotScene = new QGraphicsScene(this);
+    ui->graphicsView->setScene(dotScene);
+    dotScene->addEllipse(10,10,10,10, *pen);
 }
 
 void BottomWidget::setLineWidth(int lineWidth) {
     BottomWidget::pen->setWidth(lineWidth);
+    drawDot();
 }
 
 void BottomWidget::chooseColor() {
@@ -34,6 +38,13 @@ void BottomWidget::setRainbow(bool rainbow) {
 
 void BottomWidget::setColor(QColor color) {
     BottomWidget::pen->setColor(color);
+    drawDot();
+}
+
+void BottomWidget::drawDot() {
+    dotScene->clear();
+    dotScene->addEllipse(0, 0, pen->width(), pen->width(), *pen);
+
 }
 
 

@@ -19,8 +19,10 @@ public:
 private:
     Ui::BottomWidget *ui;
     QPen *pen;
+    QGraphicsScene *dotScene;
     bool ranbow;
     void setColor(QColor color);
+    void drawDot();
 
 signals:
 
@@ -28,8 +30,6 @@ public slots:
     void setLineWidth(int lineWidth);
     void chooseColor();
     void setRainbow(bool rainbow);
-
-
 };
 
 

@@ -21,13 +21,9 @@ public:
     explicit CenterWidget(QWidget *parent = 0);
     bool openImage(const QString &fileName);
     bool saveImage(const QString &fileName);
-    bool isModified() const { return modified; }
 
 private:
     Ui::CenterWidget *ui;
-    bool modified;
-    bool scribbling;
-    QColor myPenColor;
     QPoint lastPoint;
     Drawing commandInvoker;
     QPen *pen;
@@ -36,7 +32,6 @@ private:
     int gridNumber;
     int gridOpacity;
     bool mirror;
-
 
     void drawLineTo(const QPoint &endPoint);
     void resizeImage(QImage *image, const QSize &newSize);
