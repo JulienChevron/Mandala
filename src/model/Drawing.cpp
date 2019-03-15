@@ -8,12 +8,9 @@
 #define MAX_UNDO 100
 
 void Drawing::draw(CommandDraw &commandDrawing) {
-    dequeImageUndo.push_back(currentImage);
-    if (dequeImageUndo.size() > MAX_UNDO) {
-        dequeImageUndo.erase(dequeImageUndo.begin());
-    }
     QPainter painter(&currentImage);
     commandDrawing.draw_command(painter);
+    dequeImageRedo.clear();
 }
 
 Drawing::Drawing() : dequeImageUndo(), dequeImageRedo() {
@@ -34,10 +31,7 @@ void Drawing::undo() {
 }
 
 void Drawing::redo() {
-    dequeImageUndo.push_back(currentImage);
-    if (dequeImageUndo.size() > MAX_UNDO) {
-        dequeImageUndo.erase(dequeImageUndo.begin());
-    }
+   save();
     if (!dequeImageRedo.empty()) {
         currentImage = dequeImageRedo.back();
         dequeImageRedo.erase(dequeImageRedo.end());
@@ -50,4 +44,12 @@ QImage &Drawing::getCurrentImage() {
 
 void Drawing::setCurrentImage(const QImage &currentImage) {
     this->currentImage = currentImage;
+}
+
+void Drawing::save() {
+    std::cout << "save" << std::endl;
+    dequeImageUndo.push_back(currentImage);
+    if (dequeImageUndo.size() > MAX_UNDO) {
+        dequeImageUndo.erase(dequeImageUndo.begin());
+    }
 }

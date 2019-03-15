@@ -66,6 +66,7 @@ void CenterWidget::mousePressEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton) {
         lastPoint = event->pos();
         scribbling = true;
+        commandInvoker.save();
     }
 }
 
@@ -102,7 +103,7 @@ void CenterWidget::drawLineTo(const QPoint &endPoint) {
 
     CommandDrawLine c(lastPoint, endPoint, pen);
     commandInvoker.draw(c);
-    //c.draw_command(painter);
+
     modified = true;
 
     int rad = (myPenWidth / 2) + 2;
