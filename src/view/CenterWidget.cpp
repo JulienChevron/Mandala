@@ -23,6 +23,7 @@ CenterWidget::CenterWidget(QWidget *parent) :
     modified = false;
     scribbling = false;
     myPenColor = Qt::black;
+
 }
 
 bool CenterWidget::openImage(const QString &fileName) {
@@ -81,16 +82,6 @@ void CenterWidget::paintEvent(QPaintEvent *event) {
     painter.drawImage(dirtyRect, commandInvoker.getCurrentImage(), dirtyRect);
 }
 
-void CenterWidget::resizeEvent(QResizeEvent *event) {
-    if (width() > commandInvoker.getCurrentImage().width() || width() > commandInvoker.getCurrentImage().height()) {
-        int newWidth = qMax(width() + 128, commandInvoker.getCurrentImage().width());
-        int newHeight = qMax(height() + 128, commandInvoker.getCurrentImage().height());
-        resizeImage(&commandInvoker.getCurrentImage(), QSize(newWidth, newHeight));
-        update();
-    }
-    QWidget::resizeEvent(event);
-}
-
 void CenterWidget::drawLineTo(const QPoint &endPoint) {
 
     CommandDrawLine c(lastPoint, endPoint, *pen);
@@ -132,7 +123,7 @@ void CenterWidget::saveCurrentImage() {
 void CenterWidget::setSize(QSize* size) {
     this->imgSize = size;
     resizeImage(&commandInvoker.getCurrentImage(), *size);
-    update();
+    clearImage();
 }
 
 
