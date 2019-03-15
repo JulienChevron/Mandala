@@ -5,12 +5,13 @@
 #include <iostream>
 #include <QtWidgets/QColorDialog>
 #include <include/view/BottomWidget.hpp>
+#include <include/model/QPenSingleton.hpp>
 
 #include "include/view/BottomWidget.hpp"
 
 BottomWidget::BottomWidget(QWidget *parent) :
         QWidget(parent),
-        pen(new QPen(Qt::black, 10)),
+        pen(QPenSingleton::Instance()),
         ui(new Ui::BottomWidget)
 {
     ui->setupUi(this);

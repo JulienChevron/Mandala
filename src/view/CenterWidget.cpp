@@ -11,10 +11,12 @@
 #include <include/model/CommandDrawLine.hpp>
 #include <iostream>
 #include <QtWidgets/QFileDialog>
+#include <include/model/QPenSingleton.hpp>
 
 
 CenterWidget::CenterWidget(QWidget *parent) :
         QWidget(parent),
+        pen(QPenSingleton::Instance()),
         ui(new Ui::CenterWidget) {
     ui->setupUi(this);
     setAttribute(Qt::WA_StaticContents);
@@ -99,16 +101,11 @@ void CenterWidget::resizeEvent(QResizeEvent *event) {
 }
 
 void CenterWidget::drawLineTo(const QPoint &endPoint) {
-    QPen pen(myPenColor, myPenWidth, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);//TODO USE GLOBAL PEN
 
-    CommandDrawLine c(lastPoint, endPoint, pen);
+    CommandDrawLine c(lastPoint, endPoint, *pen);
     commandInvoker.draw(c);
-
     modified = true;
-
-    int rad = (myPenWidth / 2) + 2;
-    update(QRect(lastPoint, endPoint).normalized()
-                   .adjusted(-rad, -rad, +rad, +rad));
+    update();
     lastPoint = endPoint;
 }
 

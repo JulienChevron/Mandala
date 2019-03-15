@@ -35,6 +35,7 @@ private:
     QColor myPenColor;
     QPoint lastPoint;
     Drawing commandInvoker;
+    QPen *pen;
 
     void drawLineTo(const QPoint &endPoint);
     void resizeImage(QImage *image, const QSize &newSize);
