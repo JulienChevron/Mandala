@@ -22,7 +22,6 @@ CenterWidget::CenterWidget(QWidget *parent) :
     setAttribute(Qt::WA_StaticContents);
     modified = false;
     scribbling = false;
-    myPenWidth = 1;
     myPenColor = Qt::black;
 }
 
@@ -48,14 +47,6 @@ bool CenterWidget::saveImage(const QString &fileName) {
     } else {
         return false;
     }
-}
-
-void CenterWidget::setPenColor(const QColor &newColor) {
-    myPenColor = newColor;
-}
-
-void CenterWidget::setPenWidth(int newWidth) {
-    myPenWidth = newWidth;
 }
 
 void CenterWidget::clearImage() {
@@ -91,7 +82,7 @@ void CenterWidget::paintEvent(QPaintEvent *event) {
 }
 
 void CenterWidget::resizeEvent(QResizeEvent *event) {
-    if (width() > commandInvoker.getCurrentImage().width() || height() > commandInvoker.getCurrentImage().height()) {
+    if (width() > commandInvoker.getCurrentImage().width() || width() > commandInvoker.getCurrentImage().height()) {
         int newWidth = qMax(width() + 128, commandInvoker.getCurrentImage().width());
         int newHeight = qMax(height() + 128, commandInvoker.getCurrentImage().height());
         resizeImage(&commandInvoker.getCurrentImage(), QSize(newWidth, newHeight));
@@ -136,4 +127,31 @@ void CenterWidget::saveCurrentImage() {
     QString fileName = QFileDialog::getSaveFileName(this, tr("Save Image"), tr("image.png"), tr("Images (*.png *.jpg)"));
     std::cout << fileName.toStdString() << std::endl;
     saveImage(fileName);
+}
+
+void CenterWidget::resizeImage(int width, int height) {
+    std::cout << "set grid size to : " << width << "x" << height << std::endl;
+    this->imgWidth = width;
+    this->imgHeight = height;
+}
+
+
+void CenterWidget::setGrid(bool grid) {
+    std::cout << "set grid to : " << grid << std::endl;
+    this->grid = grid;
+}
+
+void CenterWidget::setGridSlice(int number) {
+    std::cout << "set grid slice to : " << number << std::endl;
+    this->gridNumber = number;
+}
+
+void CenterWidget::setGridOpacity(int opacity) {
+    std::cout << "set grid slice to : " << opacity << std::endl;
+    this->gridOpacity = opacity;
+}
+
+void CenterWidget::setMirror(bool mirror) {
+    std::cout << "set mirror : " << mirror << std::endl;
+    this->mirror = mirror;
 }

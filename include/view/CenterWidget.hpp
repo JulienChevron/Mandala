@@ -21,21 +21,23 @@ public:
     explicit CenterWidget(QWidget *parent = 0);
     bool openImage(const QString &fileName);
     bool saveImage(const QString &fileName);
-    void setPenColor(const QColor &newColor);
-    void setPenWidth(int newWidth);
     bool isModified() const { return modified; }
-    QColor penColor() const { return myPenColor; }
-    int penWidth() const { return myPenWidth; }
 
 private:
     Ui::CenterWidget *ui;
     bool modified;
     bool scribbling;
-    int myPenWidth;
     QColor myPenColor;
     QPoint lastPoint;
     Drawing commandInvoker;
     QPen *pen;
+    int imgWidth;
+    int imgHeight;
+    bool grid;
+    int gridNumber;
+    int gridOpacity;
+    bool mirror;
+
 
     void drawLineTo(const QPoint &endPoint);
     void resizeImage(QImage *image, const QSize &newSize);
@@ -56,6 +58,11 @@ public slots:
     void undo();
     void redo();
     void saveCurrentImage();
+    void resizeImage(int width, int height);
+    void setGrid(bool grid);
+    void setGridSlice(int number);
+    void setGridOpacity(int opacity);
+    void setMirror(bool mirror);
 };
 
 

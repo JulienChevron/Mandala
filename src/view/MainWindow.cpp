@@ -14,6 +14,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionRedo, SIGNAL(triggered()), ui->center, SLOT(redo()));
     connect(ui->actionSave_as, SIGNAL(triggered()), ui->center, SLOT(saveCurrentImage()));
     connect(ui->top->getUi()->clearButton, SIGNAL(pressed()), ui->center, SLOT(clearImage()));
+    connect(ui->top->getUi()->grid_slider, SIGNAL(valueChanged(int)), ui->center, SLOT(setGridOpacity(int)));
+    connect(ui->top->getUi()->grid, SIGNAL(clicked(bool)), ui->center, SLOT(setGrid(bool)));
+    connect(ui->top->getUi()->mirror, SIGNAL(clicked(bool)), ui->center, SLOT(setMirror(bool)));
+    connect(ui->top->getUi()->spinBox, SIGNAL(valueChanged(int)), ui->center, SLOT(setGridSlice(int)));
 }
 
 MainWindow::~MainWindow() {
