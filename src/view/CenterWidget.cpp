@@ -36,7 +36,7 @@ bool CenterWidget::openImage(const QString &fileName) {
 
 bool CenterWidget::saveImage(const QString &fileName) {
     QImage visibleImage = commandInvoker.getCurrentImage();
-    resizeImage(&visibleImage, size());
+    //resizeImage(&visibleImage, *this->imgSize);
     return visibleImage.save(fileName);
 }
 
