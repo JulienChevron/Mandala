@@ -43,8 +43,11 @@ void BottomWidget::setColor(QColor color) {
 
 void BottomWidget::drawDot() {
     dotScene->clear();
-    dotScene->addEllipse(0, 0, pen->width(), pen->width(), *pen);
+    dotScene->addEllipse(15, 15, pen->width()/2.0, pen->width()/2.0, *pen, pen->brush());
+}
 
+Ui::BottomWidget *BottomWidget::getUi() const {
+    return ui;
 }
 
 

@@ -15,6 +15,7 @@ class BottomWidget : public QWidget {
     Q_OBJECT
 public:
     explicit BottomWidget(QWidget *parent = 0);
+    Ui::BottomWidget *getUi() const;
 
 private:
     Ui::BottomWidget *ui;

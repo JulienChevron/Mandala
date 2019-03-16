@@ -94,22 +94,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>lgbt_btn</sender>
-   <signal>clicked(bool)</signal>
-   <receiver>BottomWidget</receiver>
-   <slot>setRainbow(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>771</x>
-     <y>38</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>411</x>
-     <y>38</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>color_btn</sender>
    <signal>clicked()</signal>
    <receiver>BottomWidget</receiver>

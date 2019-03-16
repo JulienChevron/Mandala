@@ -34,6 +34,7 @@ private:
     int gridNumber = 1;
     int gridOpacity;
     bool mirror;
+    bool lgbt;
 
     void drawLineTo(const QPoint &endPoint);
 
@@ -71,6 +72,8 @@ public slots:
     void setGridOpacity(int opacity);
 
     void setMirror(bool mirror);
+
+    void setLGBT(bool lgbt);
 
     QPoint rotatePoint(const QPoint &point, const QPoint &center, int degree) const;
 };

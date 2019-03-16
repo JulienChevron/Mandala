@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->top->getUi()->grid, SIGNAL(clicked(bool)), ui->center, SLOT(setGrid(bool)));
     connect(ui->top->getUi()->mirror, SIGNAL(clicked(bool)), ui->center, SLOT(setMirror(bool)));
     connect(ui->top->getUi()->spinBox, SIGNAL(valueChanged(int)), ui->center, SLOT(setGridSlice(int)));
+    connect(ui->bottom->getUi()->lgbt_btn, SIGNAL(clicked(bool)), ui->center, SLOT(setLGBT(bool)));
     connect(ui->top, SIGNAL(sendSize(QSize*)), ui->center, SLOT(setSize(QSize*)));
     ui->center->setSize(new QSize(800,600));
 

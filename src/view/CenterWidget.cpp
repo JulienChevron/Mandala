@@ -140,11 +140,16 @@ void CenterWidget::setGridSlice(int number) {
 }
 
 void CenterWidget::setGridOpacity(int opacity) {
-    std::cout << "set grid slice to : " << opacity << std::endl;
+    std::cout << "set grid opacity to : " << opacity << std::endl;
     this->gridOpacity = opacity;
 }
 
 void CenterWidget::setMirror(bool mirror) {
     std::cout << "set mirror : " << mirror << std::endl;
     this->mirror = mirror;
+}
+
+void CenterWidget::setLGBT(bool lgbt) {
+    std::cout << "set lgbt : " << mirror << std::endl;
+    this->lgbt = lgbt;
 }
