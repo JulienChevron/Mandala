@@ -36,7 +36,7 @@ private:
     bool mirror;
     bool lgbt;
 
-    void drawLineTo(const QPoint &endPoint);
+    void drawLineTo(const QPoint &endPoint, QPen pen);
 
     void resizeImage(QImage *image, const QSize &newSize);
 

@@ -54,12 +54,12 @@ void CenterWidget::mousePressEvent(QMouseEvent *event) {
 
 void CenterWidget::mouseMoveEvent(QMouseEvent *event) {
     if ((event->buttons() & Qt::LeftButton))
-        drawLineTo(event->pos());
+        drawLineTo(event->pos(), *pen);
 }
 
 void CenterWidget::mouseReleaseEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton) {
-        drawLineTo(event->pos());
+        drawLineTo(event->pos(), *pen);
     }
 }
 
@@ -69,16 +69,23 @@ void CenterWidget::paintEvent(QPaintEvent *event) {
     painter.drawImage(dirtyRect, commandInvoker.getCurrentImage(), dirtyRect);
 }
 
-void CenterWidget::drawLineTo(const QPoint &endPoint) {
+void CenterWidget::drawLineTo(const QPoint &endPoint, QPen pen) {
     QPoint center(imgSize->width() / 2, imgSize->height() / 2);
     int angle = 360 / this->gridNumber;
-    if (gridNumber == 1 or mirror == false) {
-        commandInvoker.draw(CommandDrawLine(lastPoint, endPoint, *pen));
+    if (gridNumber == 1 or !mirror) {
+        commandInvoker.draw(CommandDrawLine(lastPoint, endPoint, pen));
     } else {
+        QColor color = pen.color();
+        int h, s, v, a;
+        color.getHsv(&h, &s, &v, &a);
         for (int i = 0; i < gridNumber; ++i) {
             QPoint lastPointRotated = rotatePoint(lastPoint, center, angle * i);
             QPoint endPointRotated = rotatePoint(endPoint, center, angle * i);
-            commandInvoker.draw(CommandDrawLine(lastPointRotated, endPointRotated, *pen));
+            if (lgbt) {
+                color.setHsv((h + angle * i), s, v, a);
+                pen.setColor(color);
+            }
+            commandInvoker.draw(CommandDrawLine(lastPointRotated, endPointRotated, pen));
         }
     }
     update();
