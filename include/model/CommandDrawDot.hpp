@@ -11,7 +11,7 @@ class CommandDrawDot : public CommandDraw {
 public:
     CommandDrawDot(const QPoint &coord, const QPen &pen);
 
-    void draw(QPainter &painter) override;
+    void draw(QPainter &painter) const override;
 
     void undo(QPainter &painter) override;
 

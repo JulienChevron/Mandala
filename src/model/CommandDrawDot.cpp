@@ -4,7 +4,7 @@
 
 #include "include/model/CommandDrawDot.hpp"
 
-void CommandDrawDot::draw(QPainter &painter) {
+void CommandDrawDot::draw(QPainter &painter) const {
     painter.setPen(pen);
     painter.drawPoint(this->coord);
 }

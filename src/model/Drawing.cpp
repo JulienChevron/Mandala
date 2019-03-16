@@ -7,7 +7,7 @@
 
 #define MAX_UNDO 100
 
-void Drawing::draw(CommandDraw &commandDrawing) {
+void Drawing::draw(const CommandDraw &commandDrawing) {
     QPainter painter(&currentImage);
     commandDrawing.draw_command(painter);
     dequeImageRedo.clear();

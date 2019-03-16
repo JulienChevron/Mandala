@@ -11,10 +11,10 @@
 class CommandDraw {
 public:
     explicit CommandDraw();
-    virtual void draw_command(QPainter & painter);
+    virtual void draw_command(QPainter & painter) const;
     virtual void undo_command(QPainter & painter);
 protected:
-    virtual void draw(QPainter &painter) = 0;
+    virtual void draw(QPainter &painter) const = 0;
 
     virtual void undo(QPainter &painter) = 0;
 

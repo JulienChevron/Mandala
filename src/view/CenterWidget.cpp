@@ -70,11 +70,27 @@ void CenterWidget::paintEvent(QPaintEvent *event) {
 }
 
 void CenterWidget::drawLineTo(const QPoint &endPoint) {
-
-    CommandDrawLine c(lastPoint, endPoint, *pen);
-    commandInvoker.draw(c);
+    QPoint center(imgSize->width() / 2, imgSize->height() / 2);
+    int angle = 360 / this->gridNumber;
+    if (gridNumber == 1 or mirror == false) {
+        commandInvoker.draw(CommandDrawLine(lastPoint, endPoint, *pen));
+    } else {
+        for (int i = 0; i < gridNumber; ++i) {
+            QPoint lastPointRotated = rotatePoint(lastPoint, center, angle * i);
+            QPoint endPointRotated = rotatePoint(endPoint, center, angle * i);
+            commandInvoker.draw(CommandDrawLine(lastPointRotated, endPointRotated, *pen));
+        }
+    }
     update();
     lastPoint = endPoint;
+}
+
+QPoint CenterWidget::rotatePoint(const QPoint &point, const QPoint &center, int degree) const {
+    return QTransform()
+            .translate(center.x(), center.y())
+            .rotate(degree)
+            .translate(-center.x(), -center.y())
+            .map(point);
 }
 
 void CenterWidget::resizeImage(QImage *image, const QSize &newSize) {
@@ -100,12 +116,13 @@ void CenterWidget::redo() {
 }
 
 void CenterWidget::saveCurrentImage() {
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Image"), tr("image.png"), tr("Images (*.png *.jpg)"));
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Image"), tr("image.png"),
+                                                    tr("Images (*.png *.jpg)"));
     std::cout << fileName.toStdString() << std::endl;
     saveImage(fileName);
 }
 
-void CenterWidget::setSize(QSize* size) {
+void CenterWidget::setSize(QSize *size) {
     this->imgSize = size;
     resizeImage(&commandInvoker.getCurrentImage(), *size);
     clearImage();

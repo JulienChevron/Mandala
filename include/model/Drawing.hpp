@@ -16,7 +16,7 @@ public:
 
     virtual ~Drawing();
 
-    void draw(CommandDraw &commandDrawing);
+    void draw(const CommandDraw &commandDrawing);
     void save();
     void undo();
     void redo();

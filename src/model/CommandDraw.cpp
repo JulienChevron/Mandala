@@ -7,7 +7,7 @@
 
 CommandDraw::CommandDraw() = default;
 
-void CommandDraw::draw_command(QPainter &painter) {
+void CommandDraw::draw_command(QPainter &painter) const {
     draw(painter);
 }
 

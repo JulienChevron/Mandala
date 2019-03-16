@@ -4,7 +4,7 @@
 
 #include "include/model/CommandDrawLine.hpp"
 
-void CommandDrawLine::draw(QPainter &painter) {
+void CommandDrawLine::draw(QPainter &painter) const {
     painter.setPen(pen);
     painter.drawLine(coord1, coord2);
 }

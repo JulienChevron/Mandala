@@ -13,7 +13,7 @@ public:
     CommandDrawLine(const QPoint &coord1, const QPoint &coord2, const QPen &pen);
 
 protected:
-    void draw(QPainter &painter) override;
+    void draw(QPainter &painter) const override;
 
     void undo(QPainter &painter) override;
 
