@@ -16,7 +16,20 @@
     <height>500</height>
    </size>
   </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="DrawingAreaWidget" name="drawingArea" native="true"/>
+   </item>
+  </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>DrawingAreaWidget</class>
+   <extends>QWidget</extends>
+   <header>view/DrawingAreaWidget.hpp</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

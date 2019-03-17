@@ -10,17 +10,17 @@ MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::MainWindow) {
     ui->setupUi(this);
-    connect(ui->actionUndo, SIGNAL(triggered()), ui->center, SLOT(undo()));
-    connect(ui->actionRedo, SIGNAL(triggered()), ui->center, SLOT(redo()));
-    connect(ui->actionSave_as, SIGNAL(triggered()), ui->center, SLOT(saveCurrentImage()));
-    connect(ui->top->getUi()->clearButton, SIGNAL(pressed()), ui->center, SLOT(clearImage()));
-    connect(ui->top->getUi()->grid_slider, SIGNAL(valueChanged(int)), ui->center, SLOT(setGridOpacity(int)));
-    connect(ui->top->getUi()->grid, SIGNAL(clicked(bool)), ui->center, SLOT(setGrid(bool)));
-    connect(ui->top->getUi()->mirror, SIGNAL(clicked(bool)), ui->center, SLOT(setMirror(bool)));
-    connect(ui->top->getUi()->spinBox, SIGNAL(valueChanged(int)), ui->center, SLOT(setGridSlice(int)));
-    connect(ui->bottom->getUi()->lgbt_btn, SIGNAL(clicked(bool)), ui->center, SLOT(setLGBT(bool)));
-    connect(ui->top, SIGNAL(sendSize(QSize*)), ui->center, SLOT(setSize(QSize*)));
-    ui->center->setSize(new QSize(800,600));
+    connect(ui->actionUndo, SIGNAL(triggered()), ui->center->getUi()->drawingArea, SLOT(undo()));
+    connect(ui->actionRedo, SIGNAL(triggered()), ui->center->getUi()->drawingArea, SLOT(redo()));
+    connect(ui->actionSave_as, SIGNAL(triggered()), ui->center->getUi()->drawingArea, SLOT(saveCurrentImage()));
+    connect(ui->top->getUi()->clearButton, SIGNAL(pressed()),  ui->center->getUi()->drawingArea, SLOT(clearImage()));
+    connect(ui->top->getUi()->grid_slider, SIGNAL(valueChanged(int)),  ui->center->getUi()->drawingArea, SLOT(setGridOpacity(int)));
+    connect(ui->top->getUi()->grid, SIGNAL(clicked(bool)),  ui->center->getUi()->drawingArea, SLOT(setGrid(bool)));
+    connect(ui->top->getUi()->mirror, SIGNAL(clicked(bool)),  ui->center->getUi()->drawingArea, SLOT(setMirror(bool)));
+    connect(ui->top->getUi()->spinBox, SIGNAL(valueChanged(int)),  ui->center->getUi()->drawingArea, SLOT(setGridSlice(int)));
+    connect(ui->bottom->getUi()->lgbt_btn, SIGNAL(clicked(bool)),  ui->center->getUi()->drawingArea, SLOT(setLGBT(bool)));
+    connect(ui->top, SIGNAL(sendSize(QSize*)), ui->center->getUi()->drawingArea, SLOT(setSize(QSize*)));
+    ui->center->getUi()->drawingArea->setSize(new QSize(800,600));
 
 }
 
