@@ -22,7 +22,6 @@ private:
     QPoint lastPoint;
     Drawing commandInvoker;
     QPen *pen;
-    QSize *imgSize;
     bool grid;
     int gridNumber = 1;
     int gridOpacity;

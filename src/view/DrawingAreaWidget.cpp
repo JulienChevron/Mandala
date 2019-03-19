@@ -67,7 +67,7 @@ void DrawingAreaWidget::paintEvent(QPaintEvent *event) {
 }
 
 void DrawingAreaWidget::drawLineTo(const QPoint &endPoint, QPen pen) {
-    QPoint center(imgSize->width() / 2, imgSize->height() / 2);
+    QPoint center(commandInvoker.getCurrentImage().width() / 2, commandInvoker.getCurrentImage().height() / 2);
     int angle = 360 / this->gridNumber;
     if (gridNumber == 1 or !mirror) {
         commandInvoker.draw(CommandDrawLine(lastPoint, endPoint, pen));
@@ -127,7 +127,6 @@ void DrawingAreaWidget::saveCurrentImage() {
 }
 
 void DrawingAreaWidget::setSize(QSize *size) {
-    this->imgSize = size;
     setMinimumSize(*size);
     setMaximumSize(*size);
     resizeImage(&commandInvoker.getCurrentImage(), *size);
