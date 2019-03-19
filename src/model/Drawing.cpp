@@ -47,7 +47,6 @@ void Drawing::setCurrentImage(const QImage &currentImage) {
 }
 
 void Drawing::save() {
-    std::cout << "save" << std::endl;
     dequeImageUndo.push_back(currentImage);
     if (dequeImageUndo.size() > MAX_UNDO) {
         dequeImageUndo.erase(dequeImageUndo.begin());

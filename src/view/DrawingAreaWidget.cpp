@@ -15,7 +15,8 @@
 
 DrawingAreaWidget::DrawingAreaWidget(QWidget *parent) :
         QWidget(parent),
-        pen(QPenSingleton::Instance()){
+        pen(QPenSingleton::Instance()),
+        gridPen(new QPen(Qt::gray, 10, Qt::DashDotLine)){
     setAttribute(Qt::WA_StaticContents);
 }
 
@@ -64,12 +65,13 @@ void DrawingAreaWidget::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
     QRect dirtyRect = event->rect();
     painter.drawImage(dirtyRect, commandInvoker.getCurrentImage(), dirtyRect);
+    painter.drawImage(dirtyRect, *filter, dirtyRect);
 }
 
 void DrawingAreaWidget::drawLineTo(const QPoint &endPoint, QPen pen) {
     QPoint center(commandInvoker.getCurrentImage().width() / 2, commandInvoker.getCurrentImage().height() / 2);
     int angle = 360 / this->gridNumber;
-    if (gridNumber == 1 or !mirror) {
+    if (gridNumber == 1) {
         commandInvoker.draw(CommandDrawLine(lastPoint, endPoint, pen));
     } else {
         QColor color = pen.color();
@@ -105,6 +107,7 @@ void DrawingAreaWidget::resizeImage(QImage *image, const QSize &newSize) {
     QPainter painter(&newImage);
     painter.drawImage(QPoint(0, 0), *image);
     *image = newImage;
+    update();
 }
 
 void DrawingAreaWidget::undo() {
@@ -126,35 +129,80 @@ void DrawingAreaWidget::saveCurrentImage() {
     saveImage(fileName);
 }
 
+void DrawingAreaWidget::resizeFilter(const QSize &newSize) {
+    filter = new QImage(newSize, QImage::Format_ARGB32);
+    QPainter painterFilter(filter);
+    painterFilter.setOpacity(1.00);
+    update();
+}
+
+void DrawingAreaWidget::displayGrid() {
+    QPoint center(filter->width() / 2, filter->height() / 2);
+    QPoint first(-(filter->width() * 2), filter->height() / 2);
+    int angle = 360 / this->gridNumber;
+    if (gridNumber > 1) {
+        for (int i = 0; i < gridNumber; ++i) {
+            QPoint lastPointRotated = rotatePoint(first, center, angle * i);
+            QPainter painterFilter(filter);
+            painterFilter.setPen(*gridPen);
+            painterFilter.drawLine(center.x(), center.y(), lastPointRotated.x(), lastPointRotated.y());
+        }
+    }
+    update();
+}
+
+void DrawingAreaWidget::clearGrid() {
+    QSize size = filter->size();
+    filter = new QImage(size, QImage::Format_ARGB32);
+    QPainter painterFilter(filter);
+    painterFilter.setOpacity(1.00);
+}
+
 void DrawingAreaWidget::setSize(QSize *size) {
     setMinimumSize(*size);
     setMaximumSize(*size);
     resizeImage(&commandInvoker.getCurrentImage(), *size);
+    resizeFilter(*size);
     clearImage();
+    if(grid){
+        displayGrid();
+    }
 }
 
-
 void DrawingAreaWidget::setGrid(bool grid) {
-    std::cout << "set grid to : " << grid << std::endl;
     this->grid = grid;
+    if(grid){
+        displayGrid();
+    }else{
+        clearGrid();
+    }
 }
 
 void DrawingAreaWidget::setGridSlice(int number) {
-    std::cout << "set grid slice to : " << number << std::endl;
     this->gridNumber = number;
+    if(grid){
+        clearGrid();
+        displayGrid();
+    }
 }
 
 void DrawingAreaWidget::setGridOpacity(int opacity) {
-    std::cout << "set grid opacity to : " << opacity << std::endl;
-    this->gridOpacity = opacity;
+    std::cout << opacity << std::endl;
+    QColor color(160,160,160, opacity);
+    gridPen->brush().setColor(color);
+    if(grid){
+        clearGrid();
+        displayGrid();
+    }
 }
 
 void DrawingAreaWidget::setMirror(bool mirror) {
-    std::cout << "set mirror : " << mirror << std::endl;
     this->mirror = mirror;
 }
 
 void DrawingAreaWidget::setLGBT(bool lgbt) {
-    std::cout << "set lgbt : " << mirror << std::endl;
     this->lgbt = lgbt;
 }
+
+
+

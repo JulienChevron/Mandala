@@ -1,131 +1,137 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
-    <class>TopWidget</class>
-    <widget class="QWidget" name="TopWidget">
-        <property name="geometry">
-            <rect>
-                <x>0</x>
-                <y>0</y>
-                <width>825</width>
-                <height>78</height>
-            </rect>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout">
-            <property name="spacing">
-                <number>15</number>
-            </property>
-            <item>
-                <widget class="QLabel" name="label">
-                    <property name="text">
-                        <string>Slices</string>
-                    </property>
-                </widget>
-            </item>
-            <item>
-                <widget class="QSlider" name="slices_slider">
-                    <property name="maximum">
-                        <number>20</number>
-                    </property>
-                    <property name="minimum">
-                        <number>1</number>
-                    </property>
-                    <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                    </property>
-                </widget>
-            </item>
-            <item>
-                <widget class="QSpinBox" name="spinBox">
-                    <property name="maximum">
-                        <number>20</number>
-                    </property>
-                    <property name="minimum">
-                        <number>1</number>
-                    </property>
-                </widget>
-            </item>
-            <item>
-                <widget class="QCheckBox" name="mirror">
-                    <property name="text">
-                        <string>Mirror</string>
-                    </property>
-                </widget>
-            </item>
-            <item>
-                <widget class="QComboBox" name="dimension"/>
-            </item>
-            <item>
-                <widget class="QPushButton" name="clearButton">
-                    <property name="text">
-                        <string>Clear</string>
-                    </property>
-                </widget>
-            </item>
-            <item>
-                <widget class="QCheckBox" name="grid">
-                    <property name="text">
-                        <string>Grid</string>
-                    </property>
-                </widget>
-            </item>
-            <item>
-                <widget class="QSlider" name="grid_slider">
-                    <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                    </property>
-                </widget>
-            </item>
-        </layout>
+ <class>TopWidget</class>
+ <widget class="QWidget" name="TopWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>825</width>
+    <height>78</height>
+   </rect>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <property name="spacing">
+    <number>15</number>
+   </property>
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Slices</string>
+     </property>
     </widget>
-    <resources/>
-    <connections>
-        <connection>
-            <sender>slices_slider</sender>
-            <signal>valueChanged(int)</signal>
-            <receiver>spinBox</receiver>
-            <slot>setValue(int)</slot>
-            <hints>
-                <hint type="sourcelabel">
-                    <x>119</x>
-                    <y>43</y>
-                </hint>
-                <hint type="destinationlabel">
-                    <x>255</x>
-                    <y>43</y>
-                </hint>
-            </hints>
-        </connection>
-        <connection>
-            <sender>spinBox</sender>
-            <signal>valueChanged(int)</signal>
-            <receiver>slices_slider</receiver>
-            <slot>setValue(int)</slot>
-            <hints>
-                <hint type="sourcelabel">
-                    <x>247</x>
-                    <y>29</y>
-                </hint>
-                <hint type="destinationlabel">
-                    <x>168</x>
-                    <y>31</y>
-                </hint>
-            </hints>
-        </connection>
-        <connection>
-            <sender>dimension</sender>
-            <signal>currentIndexChanged(int)</signal>
-            <receiver>TopWidget</receiver>
-            <slot>updateSize(int)</slot>
-            <hints>
-                <hint type="sourcelabel">
-                    <x>427</x>
-                    <y>38</y>
-                </hint>
-                <hint type="destinationlabel">
-                    <x>412</x>
-                    <y>38</y>
-                </hint>
-            </hints>
-        </connection>
-    </connections>
+   </item>
+   <item>
+    <widget class="QSlider" name="slices_slider">
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>20</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QSpinBox" name="spinBox">
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>20</number>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="mirror">
+     <property name="text">
+      <string>Mirror</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QComboBox" name="dimension"/>
+   </item>
+   <item>
+    <widget class="QPushButton" name="clearButton">
+     <property name="text">
+      <string>Clear</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="grid">
+     <property name="text">
+      <string>Grid</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QSlider" name="grid_slider">
+     <property name="maximum">
+      <number>255</number>
+     </property>
+     <property name="value">
+      <number>255</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>slices_slider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>119</x>
+     <y>43</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>255</x>
+     <y>43</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>slices_slider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>247</x>
+     <y>29</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>168</x>
+     <y>31</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dimension</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>TopWidget</receiver>
+   <slot>updateSize(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>427</x>
+     <y>38</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>412</x>
+     <y>38</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

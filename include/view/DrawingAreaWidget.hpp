@@ -22,15 +22,25 @@ private:
     QPoint lastPoint;
     Drawing commandInvoker;
     QPen *pen;
-    bool grid;
+    QPen *gridPen;
+    QImage *filter;
+    bool grid = false;
     int gridNumber = 1;
-    int gridOpacity;
-    bool mirror;
-    bool lgbt;
+    int gridOpacity = 255;
+    bool mirror = false;
+    bool lgbt = false;
 
     void drawLineTo(const QPoint &endPoint, QPen pen);
 
     void resizeImage(QImage *image, const QSize &newSize);
+
+    void resizeFilter(const QSize &newSize);
+
+    void displayGrid();
+
+    void clearGrid();
+
+    QPoint rotatePoint(const QPoint &point, const QPoint &center, int degree) const;
 
 
 protected:
@@ -46,7 +56,6 @@ protected:
 signals:
 
 public slots:
-
     void clearImage();
 
     void undo();
@@ -66,10 +75,6 @@ public slots:
     void setMirror(bool mirror);
 
     void setLGBT(bool lgbt);
-
-    QPoint rotatePoint(const QPoint &point, const QPoint &center, int degree) const;
-
-
 
 };
 
