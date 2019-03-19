@@ -128,6 +128,8 @@ void DrawingAreaWidget::saveCurrentImage() {
 
 void DrawingAreaWidget::setSize(QSize *size) {
     this->imgSize = size;
+    setMinimumSize(*size);
+    setMaximumSize(*size);
     resizeImage(&commandInvoker.getCurrentImage(), *size);
     clearImage();
 }

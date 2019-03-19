@@ -20,7 +20,6 @@ CenterWidget::CenterWidget(QWidget *parent) :
     ui->setupUi(this);
     layout()->setAlignment(this, Qt::AlignCenter);
     setAttribute(Qt::WA_StaticContents);
-    setStyleSheet("border: 2px solid black");
 }
 
 
