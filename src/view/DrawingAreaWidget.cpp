@@ -11,7 +11,7 @@
 #include <iostream>
 #include <QtWidgets/QFileDialog>
 #include <include/model/QPenSingleton.hpp>
-
+#include <model/transform.hpp>
 
 DrawingAreaWidget::DrawingAreaWidget(QWidget *parent) :
         QWidget(parent),
@@ -34,7 +34,6 @@ bool DrawingAreaWidget::openImage(const QString &fileName) {
 
 bool DrawingAreaWidget::saveImage(const QString &fileName) {
     QImage visibleImage = commandInvoker.getCurrentImage();
-    //resizeImage(&visibleImage, *this->imgSize);
     return visibleImage.save(fileName);
 }
 
@@ -91,13 +90,6 @@ void DrawingAreaWidget::drawLineTo(const QPoint &endPoint, QPen pen) {
     lastPoint = endPoint;
 }
 
-QPoint DrawingAreaWidget::rotatePoint(const QPoint &point, const QPoint &center, int degree) const {
-    return QTransform()
-            .translate(center.x(), center.y())
-            .rotate(degree)
-            .translate(-center.x(), -center.y())
-            .map(point);
-}
 
 void DrawingAreaWidget::resizeImage(QImage *image, const QSize &newSize) {
     if (image->size() == newSize)

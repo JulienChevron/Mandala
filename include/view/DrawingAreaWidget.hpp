@@ -40,9 +40,6 @@ private:
 
     void clearGrid();
 
-    QPoint rotatePoint(const QPoint &point, const QPoint &center, int degree) const;
-
-
 protected:
     void mousePressEvent(QMouseEvent *event) override;
 
