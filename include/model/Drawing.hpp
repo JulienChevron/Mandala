@@ -28,6 +28,10 @@ public:
     void setCurrentImage(const QImage &currentImage);
     void setFilterImage(const QImage &filterImage);
 
+    void clearImage();
+
+    void clearFilter();
+
 private:
     QImage currentImage;
     QImage filter;

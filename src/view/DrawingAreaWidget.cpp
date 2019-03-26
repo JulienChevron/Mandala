@@ -39,7 +39,7 @@ bool DrawingAreaWidget::saveImage(const QString &fileName) {
 }
 
 void DrawingAreaWidget::clearImage() {
-    commandInvoker.getCurrentImage().fill(qRgb(255, 255, 255));
+    commandInvoker.clearImage();
     update();
 }
 
@@ -65,7 +65,8 @@ void DrawingAreaWidget::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
     QRect dirtyRect = event->rect();
     painter.drawImage(dirtyRect, commandInvoker.getCurrentImage(), dirtyRect);
-    painter.drawImage(dirtyRect, commandInvoker.getFilterImage(), dirtyRect);
+    if(grid)
+        painter.drawImage(dirtyRect, commandInvoker.getFilterImage(), dirtyRect);
 }
 
 void DrawingAreaWidget::drawLineTo(const QPoint &endPoint, QPen pen) {
@@ -123,6 +124,7 @@ void DrawingAreaWidget::displayGrid() {
 }
 
 void DrawingAreaWidget::clearGrid() {
+    commandInvoker.clearFilter();
     QSize size = commandInvoker.getFilterImage().size();
     QImage newFilter(size, QImage::Format_ARGB32);
     QPainter painterFilter(&newFilter);

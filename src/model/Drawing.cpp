@@ -68,5 +68,13 @@ void Drawing::save() {
     }
 }
 
+void Drawing::clearImage() {
+    getCurrentImage().fill(qRgb(255, 255, 255));
+}
+
+void Drawing::clearFilter() {
+
+}
+
 
 
