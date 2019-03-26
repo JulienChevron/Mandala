@@ -11,7 +11,7 @@
 #include <iostream>
 #include <QtWidgets/QFileDialog>
 #include <include/model/QPenSingleton.hpp>
-
+#include <model/transform.hpp>
 
 DrawingAreaWidget::DrawingAreaWidget(QWidget *parent) :
         QWidget(parent),
@@ -90,13 +90,6 @@ void DrawingAreaWidget::drawLineTo(const QPoint &endPoint, QPen pen) {
     lastPoint = endPoint;
 }
 
-QPoint DrawingAreaWidget::rotatePoint(const QPoint &point, const QPoint &center, int degree) const {
-    return QTransform()
-            .translate(center.x(), center.y())
-            .rotate(degree)
-            .translate(-center.x(), -center.y())
-            .map(point);
-}
 
 void DrawingAreaWidget::resizeImage(QImage *image, const QSize &newSize) {
     if (image->size() == newSize)
