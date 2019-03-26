@@ -15,8 +15,6 @@ public:
 protected:
     void draw(QPainter &painter) const override;
 
-    void undo(QPainter &painter) override;
-
 private:
     const QPoint &coord1;
     const QPoint &coord2;

@@ -11,12 +11,12 @@
 #include <iostream>
 #include <QtWidgets/QFileDialog>
 #include <include/model/QPenSingleton.hpp>
-#include <model/transform.hpp>
+#include <include/model/CommandDrawMandala.hpp>
 
 DrawingAreaWidget::DrawingAreaWidget(QWidget *parent) :
         QWidget(parent),
         pen(QPenSingleton::Instance()),
-        gridPen(new QPen(Qt::gray, 10, Qt::DashDotLine)){
+        gridPen(new QPen(Qt::gray, 10, Qt::DashDotLine)) {
     setAttribute(Qt::WA_StaticContents);
 }
 
@@ -69,22 +69,10 @@ void DrawingAreaWidget::paintEvent(QPaintEvent *event) {
 
 void DrawingAreaWidget::drawLineTo(const QPoint &endPoint, QPen pen) {
     QPoint center(commandInvoker.getCurrentImage().width() / 2, commandInvoker.getCurrentImage().height() / 2);
-    int angle = 360 / this->gridNumber;
     if (gridNumber == 1) {
         commandInvoker.draw(CommandDrawLine(lastPoint, endPoint, pen));
     } else {
-        QColor color = pen.color();
-        int h, s, v, a;
-        color.getHsv(&h, &s, &v, &a);
-        for (int i = 0; i < gridNumber; ++i) {
-            QPoint lastPointRotated = rotatePoint(lastPoint, center, angle * i);
-            QPoint endPointRotated = rotatePoint(endPoint, center, angle * i);
-            if (lgbt) {
-                color.setHsv((h + angle * i), s, v, a);
-                pen.setColor(color);
-            }
-            commandInvoker.draw(CommandDrawLine(lastPointRotated, endPointRotated, pen));
-        }
+        commandInvoker.draw(CommandDrawMandala(lastPoint, endPoint, center, static_cast<uint>(gridNumber), pen, lgbt));
     }
     update();
     lastPoint = endPoint;
@@ -133,12 +121,12 @@ void DrawingAreaWidget::displayGrid() {
     QPoint first(-(filter->width() * 2), filter->height() / 2);
     int angle = 360 / this->gridNumber;
     if (gridNumber > 1) {
-        for (int i = 0; i < gridNumber; ++i) {
-            QPoint lastPointRotated = rotatePoint(first, center, angle * i);
+        /*for (int i = 0; i < gridNumber; ++i) {
+            //QPoint lastPointRotated = rotatePoint(first, center, angle * i);
             QPainter painterFilter(filter);
             painterFilter.setPen(*gridPen);
             painterFilter.drawLine(center.x(), center.y(), lastPointRotated.x(), lastPointRotated.y());
-        }
+        }*/
     }
     update();
 }
@@ -156,23 +144,23 @@ void DrawingAreaWidget::setSize(QSize *size) {
     resizeImage(&commandInvoker.getCurrentImage(), *size);
     resizeFilter(*size);
     clearImage();
-    if(grid){
+    if (grid) {
         displayGrid();
     }
 }
 
 void DrawingAreaWidget::setGrid(bool grid) {
     this->grid = grid;
-    if(grid){
+    if (grid) {
         displayGrid();
-    }else{
+    } else {
         clearGrid();
     }
 }
 
 void DrawingAreaWidget::setGridSlice(int number) {
     this->gridNumber = number;
-    if(grid){
+    if (grid) {
         clearGrid();
         displayGrid();
     }
@@ -180,9 +168,9 @@ void DrawingAreaWidget::setGridSlice(int number) {
 
 void DrawingAreaWidget::setGridOpacity(int opacity) {
     std::cout << opacity << std::endl;
-    QColor color(160,160,160, opacity);
+    QColor color(160, 160, 160, opacity);
     gridPen->brush().setColor(color);
-    if(grid){
+    if (grid) {
         clearGrid();
         displayGrid();
     }

@@ -13,8 +13,6 @@ public:
 
     void draw(QPainter &painter) const override;
 
-    void undo(QPainter &painter) override;
-
 private:
     const QPoint &coord;
     const QPen &pen;
