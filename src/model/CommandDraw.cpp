@@ -10,7 +10,3 @@ CommandDraw::CommandDraw() = default;
 void CommandDraw::draw_command(QPainter &painter) const {
     draw(painter);
 }
-
-void CommandDraw::undo_command(QPainter &painter) {
-    undo(painter);
-}
