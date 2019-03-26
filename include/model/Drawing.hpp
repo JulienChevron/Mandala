@@ -17,16 +17,20 @@ public:
     virtual ~Drawing();
 
     void draw(const CommandDraw &commandDrawing);
+    void drawOnFilter(const CommandDraw &commandDrawing);
     void save();
     void undo();
     void redo();
 
     QImage & getCurrentImage();
+    QImage & getFilterImage();
 
     void setCurrentImage(const QImage &currentImage);
+    void setFilterImage(const QImage &filterImage);
 
 private:
     QImage currentImage;
+    QImage filter;
     std::deque<QImage> dequeImageUndo;
     std::deque<QImage> dequeImageRedo;
 

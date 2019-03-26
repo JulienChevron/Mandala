@@ -13,6 +13,12 @@ void Drawing::draw(const CommandDraw &commandDrawing) {
     dequeImageRedo.clear();
 }
 
+
+void Drawing::drawOnFilter(const CommandDraw &commandDrawing) {
+    QPainter painter(&filter);
+    commandDrawing.draw_command(painter);
+}
+
 Drawing::Drawing() : dequeImageUndo(), dequeImageRedo() {
 }
 
@@ -42,8 +48,17 @@ QImage &Drawing::getCurrentImage() {
     return currentImage;
 }
 
+QImage &Drawing::getFilterImage() {
+    return filter;
+}
+
 void Drawing::setCurrentImage(const QImage &currentImage) {
     this->currentImage = currentImage;
+}
+
+
+void Drawing::setFilterImage(const QImage &filterImage) {
+    this->filter = filterImage;
 }
 
 void Drawing::save() {
@@ -52,3 +67,6 @@ void Drawing::save() {
         dequeImageUndo.erase(dequeImageUndo.begin());
     }
 }
+
+
+

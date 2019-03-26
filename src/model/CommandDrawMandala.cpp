@@ -2,9 +2,7 @@
 // Created by chopinet on 26/03/19.
 //
 
-#include <include/model/transform.hpp>
-#include <include/model/CommandDrawLine.hpp>
-#include "include/model/CommandDrawMandala.hpp"
+#include <include/model/CommandDrawMandala.hpp>
 
 void CommandDrawMandala::draw(QPainter &painter) const {
     int angle = 360 / this->grid_number;

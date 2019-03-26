@@ -8,12 +8,6 @@
 #include <QPoint>
 #include <QTransform>
 
-QPoint rotatePoint(const QPoint &point, const QPoint &center, int degree) {
-    return QTransform()
-            .translate(center.x(), center.y())
-            .rotate(degree)
-            .translate(-center.x(), -center.y())
-            .map(point);
-}
+QPoint rotatePoint(const QPoint &point, const QPoint &center, int degree);
 
 #endif //MANDALA_TRANSFORM_HPP

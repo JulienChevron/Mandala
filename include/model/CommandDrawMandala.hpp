@@ -6,7 +6,9 @@
 #define MANDALA_COMMANDDRAWMANDALA_HPP
 
 
-#include "CommandDraw.hpp"
+#include <include/model/transform.hpp>
+#include <include/model/CommandDrawLine.hpp>
+#include <include/model/CommandDraw.hpp>
 
 class CommandDrawMandala : public CommandDraw {
 private:

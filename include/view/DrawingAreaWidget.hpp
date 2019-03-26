@@ -32,7 +32,7 @@ private:
 
     void drawLineTo(const QPoint &endPoint, QPen pen);
 
-    void resizeImage(QImage *image, const QSize &newSize);
+    void resizeImage(const QSize &newSize);
 
     void resizeFilter(const QSize &newSize);
 

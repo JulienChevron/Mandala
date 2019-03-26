@@ -12,6 +12,7 @@
 #include <QtWidgets/QFileDialog>
 #include <include/model/QPenSingleton.hpp>
 #include <include/model/CommandDrawMandala.hpp>
+#include <include/model/CommandDrawGrid.hpp>
 
 DrawingAreaWidget::DrawingAreaWidget(QWidget *parent) :
         QWidget(parent),
@@ -26,7 +27,7 @@ bool DrawingAreaWidget::openImage(const QString &fileName) {
         return false;
 
     QSize newSize = loadedImage.size().expandedTo(size());
-    resizeImage(&loadedImage, newSize);
+    resizeImage(newSize);
     commandInvoker.setCurrentImage(loadedImage);
     update();
     return true;
@@ -64,7 +65,7 @@ void DrawingAreaWidget::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
     QRect dirtyRect = event->rect();
     painter.drawImage(dirtyRect, commandInvoker.getCurrentImage(), dirtyRect);
-    painter.drawImage(dirtyRect, *filter, dirtyRect);
+    painter.drawImage(dirtyRect, commandInvoker.getFilterImage(), dirtyRect);
 }
 
 void DrawingAreaWidget::drawLineTo(const QPoint &endPoint, QPen pen) {
@@ -79,25 +80,21 @@ void DrawingAreaWidget::drawLineTo(const QPoint &endPoint, QPen pen) {
 }
 
 
-void DrawingAreaWidget::resizeImage(QImage *image, const QSize &newSize) {
-    if (image->size() == newSize)
-        return;
+void DrawingAreaWidget::resizeImage(const QSize &newSize) {
     QImage newImage(newSize, QImage::Format_RGB32);
     newImage.fill(qRgb(255, 255, 255));
     QPainter painter(&newImage);
-    painter.drawImage(QPoint(0, 0), *image);
-    *image = newImage;
+    painter.drawImage(QPoint(0, 0), newImage);
+    commandInvoker.setCurrentImage(newImage);
     update();
 }
 
 void DrawingAreaWidget::undo() {
-    std::cout << "undo" << std::endl;
     commandInvoker.undo();
     update();
 }
 
 void DrawingAreaWidget::redo() {
-    std::cout << "redo" << std::endl;
     commandInvoker.redo();
     update();
 }
@@ -110,41 +107,38 @@ void DrawingAreaWidget::saveCurrentImage() {
 }
 
 void DrawingAreaWidget::resizeFilter(const QSize &newSize) {
-    filter = new QImage(newSize, QImage::Format_ARGB32);
-    QPainter painterFilter(filter);
+    QImage filter(newSize, QImage::Format_ARGB32);
+    QPainter painterFilter(&filter);
     painterFilter.setOpacity(1.00);
+    painterFilter.drawImage(QPoint(0, 0), filter);
+    commandInvoker.setFilterImage(filter);
     update();
 }
 
 void DrawingAreaWidget::displayGrid() {
-    QPoint center(filter->width() / 2, filter->height() / 2);
-    QPoint first(-(filter->width() * 2), filter->height() / 2);
-    int angle = 360 / this->gridNumber;
-    if (gridNumber > 1) {
-        /*for (int i = 0; i < gridNumber; ++i) {
-            //QPoint lastPointRotated = rotatePoint(first, center, angle * i);
-            QPainter painterFilter(filter);
-            painterFilter.setPen(*gridPen);
-            painterFilter.drawLine(center.x(), center.y(), lastPointRotated.x(), lastPointRotated.y());
-        }*/
-    }
+    QPoint center(commandInvoker.getFilterImage().width() / 2, commandInvoker.getFilterImage().width() / 2);
+    QPoint first(-(commandInvoker.getFilterImage().width() * 2), commandInvoker.getFilterImage().width() / 2);
+    commandInvoker.drawOnFilter(CommandDrawGrid(center, first, *gridPen, gridNumber, gridOpacity));
     update();
 }
 
 void DrawingAreaWidget::clearGrid() {
-    QSize size = filter->size();
-    filter = new QImage(size, QImage::Format_ARGB32);
-    QPainter painterFilter(filter);
+    QSize size = commandInvoker.getFilterImage().size();
+    QImage newFilter(size, QImage::Format_ARGB32);
+    QPainter painterFilter(&newFilter);
     painterFilter.setOpacity(1.00);
+    commandInvoker.setFilterImage(newFilter);
+    update();
 }
 
 void DrawingAreaWidget::setSize(QSize *size) {
     setMinimumSize(*size);
     setMaximumSize(*size);
-    resizeImage(&commandInvoker.getCurrentImage(), *size);
+    resizeImage(*size);
     resizeFilter(*size);
     clearImage();
     if (grid) {
+        clearGrid();
         displayGrid();
     }
 }
