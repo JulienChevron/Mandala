@@ -34,7 +34,6 @@ bool DrawingAreaWidget::openImage(const QString &fileName) {
 
 bool DrawingAreaWidget::saveImage(const QString &fileName) {
     QImage visibleImage = commandInvoker.getCurrentImage();
-    //resizeImage(&visibleImage, *this->imgSize);
     return visibleImage.save(fileName);
 }
 
