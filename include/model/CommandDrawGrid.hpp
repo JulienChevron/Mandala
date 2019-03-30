@@ -11,7 +11,7 @@
 class CommandDrawGrid : public CommandDraw {
 
 public:
-    CommandDrawGrid(const QPoint &coord1, const QPoint &coord2, const QPen &pen, int number, int opacity);
+    CommandDrawGrid(const QPoint &coord1, const QPoint &coord2, const QPen &pen, int number, float opacity);
 
 protected:
     void draw(QPainter &painter) const override;
@@ -21,7 +21,7 @@ private:
     const QPoint &first;
     const QPen &pen;
     const int number;
-    const int opacity;
+    const float opacity;
 
 };
 

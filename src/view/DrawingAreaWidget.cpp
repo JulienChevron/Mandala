@@ -19,6 +19,7 @@ DrawingAreaWidget::DrawingAreaWidget(QWidget *parent) :
         pen(QPenSingleton::Instance()),
         gridPen(new QPen(Qt::gray, 10, Qt::DashDotLine)) {
     setAttribute(Qt::WA_StaticContents);
+    gridPen->color().setAlpha(gridOpacity);
 }
 
 bool DrawingAreaWidget::openImage(const QString &fileName) {
@@ -167,9 +168,7 @@ void DrawingAreaWidget::setGridSlice(int number) {
 }
 
 void DrawingAreaWidget::setGridOpacity(int opacity) {
-    std::cout << opacity << std::endl;
-    QColor color(160, 160, 160, opacity);
-    gridPen->brush().setColor(color);
+    this->gridOpacity = (float) opacity/100;
     if (grid) {
         displayGrid();
     }

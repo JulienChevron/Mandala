@@ -23,10 +23,9 @@ private:
     Drawing commandInvoker;
     QPen *pen;
     QPen *gridPen;
-    QImage *filter;
     bool grid = false;
     int gridNumber = 1;
-    int gridOpacity = 255;
+    float gridOpacity = 1.0;
     bool mirror = false;
     bool rainbow = false;
 
