@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.10)
 project(Mandala)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -19,6 +19,6 @@ file(GLOB SRC
         "include/view/*.hpp"
         "ui/*.ui"
         )
-add_executable(Mandala ${SRC})
+add_executable(Mandala ${SRC} src/view/main.cpp)
 
 target_link_libraries(${CMAKE_PROJECT_NAME} Qt5::Widgets)

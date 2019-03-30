@@ -4,9 +4,6 @@
 
 #include <include/view/TopWidget.hpp>
 
-#include "include/view/TopWidget.hpp"
-
-
 TopWidget::TopWidget(QWidget *parent) :
         QWidget(parent),
         ui(new Ui::TopWidget)

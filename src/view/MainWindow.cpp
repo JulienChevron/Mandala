@@ -1,6 +1,6 @@
 
 #include "include/view/MainWindow.hpp"
-#include <QtWidgets/QMessageBox>
+#include <QMessageBox>
 #include "include/view/BottomWidget.hpp"
 #include "include/view/CenterWidget.hpp"
 #include "include/view/TopWidget.hpp"

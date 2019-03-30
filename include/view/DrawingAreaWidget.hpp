@@ -6,7 +6,7 @@
 #define MANDALA_DRAWINGAREAWIDGET_HPP
 
 
-#include <QtWidgets/QGraphicsView>
+#include <QGraphicsView>
 #include <include/model/Drawing.hpp>
 
 class DrawingAreaWidget : public QWidget {
