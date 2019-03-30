@@ -28,7 +28,7 @@ private:
     int gridNumber = 1;
     int gridOpacity = 255;
     bool mirror = false;
-    bool lgbt = false;
+    bool rainbow = false;
 
     void drawLineTo(const QPoint &endPoint, QPen pen);
 
@@ -71,7 +71,7 @@ public slots:
 
     void setMirror(bool mirror);
 
-    void setLGBT(bool lgbt);
+    void setRainbow(bool rainbow);
 
 };
 

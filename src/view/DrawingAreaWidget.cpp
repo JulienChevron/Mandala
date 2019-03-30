@@ -74,7 +74,7 @@ void DrawingAreaWidget::drawLineTo(const QPoint &endPoint, QPen pen) {
     if (gridNumber == 1) {
         commandInvoker.draw(CommandDrawLine(lastPoint, endPoint, pen));
     } else {
-        commandInvoker.draw(CommandDrawMandala(lastPoint, endPoint, center, static_cast<uint>(gridNumber), pen, lgbt));
+        commandInvoker.draw(CommandDrawMandala(lastPoint, endPoint, center, static_cast<uint>(gridNumber), pen, rainbow));
     }
     update();
     lastPoint = endPoint;
@@ -176,8 +176,8 @@ void DrawingAreaWidget::setMirror(bool mirror) {
     this->mirror = mirror;
 }
 
-void DrawingAreaWidget::setLGBT(bool lgbt) {
-    this->lgbt = lgbt;
+void DrawingAreaWidget::setRainbow(bool rainbow) {
+    this->rainbow = rainbow;
 }
 
 

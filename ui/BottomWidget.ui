@@ -64,9 +64,13 @@
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="lgbt_btn">
+    <widget class="QPushButton" name="rainbow_btn">
      <property name="text">
-      <string>LGBT+</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../button.png</normaloff>../button.png</iconset>
      </property>
      <property name="checkable">
       <bool>true</bool>
