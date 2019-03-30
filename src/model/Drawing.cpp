@@ -37,7 +37,7 @@ void Drawing::undo() {
 }
 
 void Drawing::redo() {
-   save();
+    save();
     if (!dequeImageRedo.empty()) {
         currentImage = dequeImageRedo.back();
         dequeImageRedo.erase(dequeImageRedo.end());
@@ -73,7 +73,7 @@ void Drawing::clearImage() {
 }
 
 void Drawing::clearFilter() {
-
+    getFilterImage().fill(qRgba(255, 255, 255, 0));
 }
 
 

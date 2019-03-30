@@ -108,15 +108,17 @@ void DrawingAreaWidget::saveCurrentImage() {
 }
 
 void DrawingAreaWidget::resizeFilter(const QSize &newSize) {
+    commandInvoker.clearFilter();
     QImage filter(newSize, QImage::Format_ARGB32);
     QPainter painterFilter(&filter);
-    painterFilter.setOpacity(1.00);
+    painterFilter.setOpacity(0.0);
     painterFilter.drawImage(QPoint(0, 0), filter);
     commandInvoker.setFilterImage(filter);
     update();
 }
 
 void DrawingAreaWidget::displayGrid() {
+    clearGrid();
     QPoint center(commandInvoker.getFilterImage().width() / 2, commandInvoker.getFilterImage().width() / 2);
     QPoint first(-(commandInvoker.getFilterImage().width() * 2), commandInvoker.getFilterImage().width() / 2);
     commandInvoker.drawOnFilter(CommandDrawGrid(center, first, *gridPen, gridNumber, gridOpacity));
@@ -128,7 +130,7 @@ void DrawingAreaWidget::clearGrid() {
     QSize size = commandInvoker.getFilterImage().size();
     QImage newFilter(size, QImage::Format_ARGB32);
     QPainter painterFilter(&newFilter);
-    painterFilter.setOpacity(1.00);
+    painterFilter.setOpacity(0.0);
     commandInvoker.setFilterImage(newFilter);
     update();
 }
