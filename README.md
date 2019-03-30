@@ -42,7 +42,10 @@ Il reste à implémenter :
 
 ![interface](img/interface.png)
 
+## 5. Dessins
 
-## 5. Divers
+![example](img/example.png)
+
+## 6. Divers
 
 Merci à l'ensicaen pour ce super projet !
