@@ -1,4 +1,4 @@
-<h1><img src="ensicaen.png" width="100"> <a href="https://github.com/JulienChevron/NelsonMandala" style="text-align: center">Projet Mandala</a> </h1> 
+<h1><img src="img/ensicaen.png" width="100"> <a href="https://github.com/JulienChevron/NelsonMandala" style="text-align: center">Projet Mandala</a> </h1> 
 
 Mandala for ENSICAEN
 
@@ -40,7 +40,7 @@ Il reste à implémenter :
 
 ## 4. Interface du logiciel
 
-![interface](interface.png)
+![interface](img/interface.png)
 
 
 ## 5. Divers
