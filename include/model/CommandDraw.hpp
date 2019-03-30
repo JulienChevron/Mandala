@@ -6,7 +6,7 @@
 #define MANDALA_DRAWINGCOMMAND_HPP
 
 
-#include <QtGui/QPainter>
+#include <QPainter>
 
 class CommandDraw {
 public:

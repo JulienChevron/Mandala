@@ -6,7 +6,7 @@
 #define MANDALA_QPENSINGLETON_H
 
 
-#include <QtGui/QPen>
+#include <QPen>
 
 class QPenSingleton {
 

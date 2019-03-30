@@ -3,9 +3,8 @@
 //
 
 #include <iostream>
-#include <QtWidgets/QColorDialog>
-#include <view/BottomWidget.hpp>
-#include <model/QPenSingleton.hpp>
+#include <include/view/BottomWidget.hpp>
+#include <include/model/QPenSingleton.hpp>
 
 #include "include/view/BottomWidget.hpp"
 

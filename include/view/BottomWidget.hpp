@@ -7,7 +7,7 @@
 
 
 #include <QtWidgets/QWidget>
-#include <QtGui/QPen>
+#include <QPen>
 #include "ui_BottomWidget.h"
 
 class BottomWidget : public QWidget {

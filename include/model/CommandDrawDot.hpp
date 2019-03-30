@@ -5,7 +5,7 @@
 #ifndef MANDALA_COMMANDDRAWINGPOINT_HPP
 #define MANDALA_COMMANDDRAWINGPOINT_HPP
 
-#include "model/CommandDraw.hpp"
+#include "include/model/CommandDraw.hpp"
 
 class CommandDrawDot : public CommandDraw {
 public:

@@ -70,7 +70,7 @@
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../button.png</normaloff>../button.png</iconset>
+       <normaloff>../img/button.png</normaloff>../img/button.png</iconset>
      </property>
      <property name="checkable">
       <bool>true</bool>
