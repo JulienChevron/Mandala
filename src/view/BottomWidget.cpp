@@ -38,7 +38,7 @@ void BottomWidget::chooseBackgroundColor() {
 }
 
 void BottomWidget::setRainbow(bool rainbow) {
-    BottomWidget::ranbow = rainbow;
+    BottomWidget::rainbow = rainbow;
 }
 
 void BottomWidget::setColor(QColor color) {

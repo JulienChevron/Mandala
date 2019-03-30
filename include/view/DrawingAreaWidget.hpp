@@ -23,6 +23,7 @@ private:
     Drawing commandInvoker;
     QPen *pen;
     QPen *gridPen;
+    QPen *mirrorPen;
     bool grid = false;
     int gridNumber = 1;
     float gridOpacity = 1.0;

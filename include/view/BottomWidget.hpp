@@ -21,7 +21,7 @@ private:
     Ui::BottomWidget *ui;
     QPen *pen;
     QGraphicsScene *dotScene;
-    bool ranbow;
+    bool rainbow;
     void setColor(QColor color);
     void setBackgroundColor(QColor color);
     void drawDot();

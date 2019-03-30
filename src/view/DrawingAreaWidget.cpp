@@ -17,7 +17,8 @@
 DrawingAreaWidget::DrawingAreaWidget(QWidget *parent) :
         QWidget(parent),
         pen(QPenSingleton::Instance()),
-        gridPen(new QPen(Qt::gray, 7, Qt::DashDotLine)) {
+        gridPen(new QPen(Qt::gray, 7, Qt::DashDotLine)),
+        mirrorPen(new QPen(Qt::gray, 3, Qt::DashDotLine)) {
     setAttribute(Qt::WA_StaticContents);
     setCursor(Qt::CrossCursor);
 }
@@ -125,6 +126,11 @@ void DrawingAreaWidget::displayGrid() {
     QPoint center(commandInvoker.getFilterImage().width() / 2, commandInvoker.getFilterImage().width() / 2);
     QPoint first(-(commandInvoker.getFilterImage().width() * 2), commandInvoker.getFilterImage().width() / 2);
     commandInvoker.drawOnFilter(CommandDrawGrid(center, first, *gridPen, gridNumber, gridOpacity));
+    if(mirror){
+        int angle = (360 / gridNumber) / 2;
+        QPoint firstMirror = rotatePoint(first, center, angle);
+        commandInvoker.drawOnFilter(CommandDrawGrid(center, firstMirror, *mirrorPen, gridNumber, gridOpacity));
+    }
     update();
 }
 
@@ -177,6 +183,10 @@ void DrawingAreaWidget::setGridOpacity(int opacity) {
 
 void DrawingAreaWidget::setMirror(bool mirror) {
     this->mirror = mirror;
+    if (grid) {
+        displayGrid();
+    }
+    update();
 }
 
 void DrawingAreaWidget::setRainbow(bool rainbow) {

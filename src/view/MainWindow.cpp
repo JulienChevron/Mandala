@@ -23,7 +23,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->bottom, SIGNAL(sendBackgroundColor(QColor*)), ui->center->getUi()->drawingArea, SLOT(setBackgroundColor(QColor*)));
     ui->center->getUi()->drawingArea->setSize(new QSize(800,800));
     this->setWindowTitle("Nelson Mandala");
-
 }
 
 MainWindow::~MainWindow() {
