@@ -17,9 +17,9 @@
 DrawingAreaWidget::DrawingAreaWidget(QWidget *parent) :
         QWidget(parent),
         pen(QPenSingleton::Instance()),
-        gridPen(new QPen(Qt::gray, 10, Qt::DashDotLine)) {
+        gridPen(new QPen(Qt::gray, 7, Qt::DashDotLine)) {
     setAttribute(Qt::WA_StaticContents);
-    gridPen->color().setAlpha(gridOpacity);
+    setCursor(Qt::CrossCursor);
 }
 
 bool DrawingAreaWidget::openImage(const QString &fileName) {
@@ -181,6 +181,15 @@ void DrawingAreaWidget::setMirror(bool mirror) {
 
 void DrawingAreaWidget::setRainbow(bool rainbow) {
     this->rainbow = rainbow;
+}
+
+void DrawingAreaWidget::setBackgroundColor(QColor *color) {
+    QImage newImage(commandInvoker.getCurrentImage().size(), QImage::Format_RGB32);
+    newImage.fill(*color);
+    QPainter painter(&newImage);
+    painter.drawImage(QPoint(0, 0), newImage);
+    commandInvoker.setCurrentImage(newImage);
+    update();
 }
 
 

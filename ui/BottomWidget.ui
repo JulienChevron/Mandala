@@ -77,6 +77,13 @@
      </property>
     </widget>
    </item>
+   <item>
+    <widget class="QPushButton" name="background_btn">
+     <property name="text">
+      <string>Background</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <resources/>
@@ -102,6 +109,22 @@
    <signal>clicked()</signal>
    <receiver>BottomWidget</receiver>
    <slot>chooseColor()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>771</x>
+     <y>38</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>411</x>
+     <y>38</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>background_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>BottomWidget</receiver>
+   <slot>chooseBackgroundColor()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>771</x>

@@ -30,6 +30,13 @@ void BottomWidget::chooseColor() {
     }
 }
 
+void BottomWidget::chooseBackgroundColor() {
+    QColor choosenColor = QColorDialog::getColor(Qt::black, this);
+    if(choosenColor.isValid()){
+        setBackgroundColor(choosenColor);
+    }
+}
+
 void BottomWidget::setRainbow(bool rainbow) {
     BottomWidget::ranbow = rainbow;
 }
@@ -37,6 +44,10 @@ void BottomWidget::setRainbow(bool rainbow) {
 void BottomWidget::setColor(QColor color) {
     BottomWidget::pen->setColor(color);
     drawDot();
+}
+
+void BottomWidget::setBackgroundColor(QColor color) {
+    emit sendBackgroundColor(&color);
 }
 
 void BottomWidget::drawDot() {

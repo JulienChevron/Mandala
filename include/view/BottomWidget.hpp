@@ -23,13 +23,16 @@ private:
     QGraphicsScene *dotScene;
     bool ranbow;
     void setColor(QColor color);
+    void setBackgroundColor(QColor color);
     void drawDot();
 
 signals:
+    void sendBackgroundColor(QColor*);
 
 public slots:
     void setLineWidth(int lineWidth);
     void chooseColor();
+    void chooseBackgroundColor();
     void setRainbow(bool rainbow);
 };
 

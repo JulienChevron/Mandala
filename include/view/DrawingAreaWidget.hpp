@@ -72,6 +72,8 @@ public slots:
 
     void setRainbow(bool rainbow);
 
+    void setBackgroundColor(QColor* color);
+
 };
 
 

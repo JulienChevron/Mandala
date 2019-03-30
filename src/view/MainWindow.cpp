@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->top->getUi()->spinBox, SIGNAL(valueChanged(int)),  ui->center->getUi()->drawingArea, SLOT(setGridSlice(int)));
     connect(ui->bottom->getUi()->rainbow_btn, SIGNAL(clicked(bool)),  ui->center->getUi()->drawingArea, SLOT(setRainbow(bool)));
     connect(ui->top, SIGNAL(sendSize(QSize*)), ui->center->getUi()->drawingArea, SLOT(setSize(QSize*)));
+    connect(ui->bottom, SIGNAL(sendBackgroundColor(QColor*)), ui->center->getUi()->drawingArea, SLOT(setBackgroundColor(QColor*)));
     ui->center->getUi()->drawingArea->setSize(new QSize(800,800));
     this->setWindowTitle("Nelson Mandala");
 
