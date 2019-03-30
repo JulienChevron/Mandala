@@ -65,7 +65,7 @@ void DrawingAreaWidget::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
     QRect dirtyRect = event->rect();
     painter.drawImage(dirtyRect, commandInvoker.getCurrentImage(), dirtyRect);
-    if(grid)
+    if (grid)
         painter.drawImage(dirtyRect, commandInvoker.getFilterImage(), dirtyRect);
 }
 
@@ -74,7 +74,8 @@ void DrawingAreaWidget::drawLineTo(const QPoint &endPoint, QPen pen) {
     if (gridNumber == 1) {
         commandInvoker.draw(CommandDrawLine(lastPoint, endPoint, pen));
     } else {
-        commandInvoker.draw(CommandDrawMandala(lastPoint, endPoint, center, static_cast<uint>(gridNumber), pen, rainbow));
+        commandInvoker.draw(
+                CommandDrawMandala(lastPoint, endPoint, center, static_cast<uint>(gridNumber), pen, rainbow));
     }
     update();
     lastPoint = endPoint;
@@ -111,14 +112,15 @@ void DrawingAreaWidget::resizeFilter(const QSize &newSize) {
     commandInvoker.clearFilter();
     QImage filter(newSize, QImage::Format_ARGB32);
     QPainter painterFilter(&filter);
+    commandInvoker.setFilterImage(filter);
     painterFilter.setOpacity(0.0);
     painterFilter.drawImage(QPoint(0, 0), filter);
-    commandInvoker.setFilterImage(filter);
+    displayGrid();
     update();
 }
 
 void DrawingAreaWidget::displayGrid() {
-    clearGrid();
+    commandInvoker.clearFilter();
     QPoint center(commandInvoker.getFilterImage().width() / 2, commandInvoker.getFilterImage().width() / 2);
     QPoint first(-(commandInvoker.getFilterImage().width() * 2), commandInvoker.getFilterImage().width() / 2);
     commandInvoker.drawOnFilter(CommandDrawGrid(center, first, *gridPen, gridNumber, gridOpacity));
@@ -142,9 +144,9 @@ void DrawingAreaWidget::setSize(QSize *size) {
     resizeFilter(*size);
     clearImage();
     if (grid) {
-        clearGrid();
         displayGrid();
     }
+    update();
 }
 
 void DrawingAreaWidget::setGrid(bool grid) {
@@ -154,12 +156,12 @@ void DrawingAreaWidget::setGrid(bool grid) {
     } else {
         clearGrid();
     }
+    update();
 }
 
 void DrawingAreaWidget::setGridSlice(int number) {
     this->gridNumber = number;
     if (grid) {
-        clearGrid();
         displayGrid();
     }
 }
@@ -169,9 +171,9 @@ void DrawingAreaWidget::setGridOpacity(int opacity) {
     QColor color(160, 160, 160, opacity);
     gridPen->brush().setColor(color);
     if (grid) {
-        clearGrid();
         displayGrid();
     }
+    update();
 }
 
 void DrawingAreaWidget::setMirror(bool mirror) {

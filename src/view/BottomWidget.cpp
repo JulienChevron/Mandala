@@ -5,8 +5,7 @@
 #include <iostream>
 #include <include/view/BottomWidget.hpp>
 #include <include/model/QPenSingleton.hpp>
-
-#include "include/view/BottomWidget.hpp"
+#include <QtWidgets/QColorDialog>
 
 BottomWidget::BottomWidget(QWidget *parent) :
         QWidget(parent),
