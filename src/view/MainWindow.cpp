@@ -30,11 +30,17 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::displayHelp() {
-    QMessageBox::information(
-            this,
-            tr("About NeslonMandala"),
-            tr("NelsonMandala : The best Mandala open source project\n"
-               "(C) 2019 CCC Development Team"));
+    QMessageBox about;
+    about.setWindowTitle("About Neslon Mandala");
+    about.setText("Nelson Mandala : The Mandala revolution\n"
+                  "Created by Pierre Chopinet & Julien Chevron");
+    about.setInformativeText("(C) 2019 CCC-Development-Team");
+    about.setStandardButtons(QMessageBox::Ok);
+    QPixmap mandala("../img/ensi.png");
+    about.setIconPixmap(mandala);
+    about.setDefaultButton(QMessageBox::Ok);
+    about.show();
+    about.exec();
 }
 
 void MainWindow::exit() {
