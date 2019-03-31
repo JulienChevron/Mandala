@@ -3,6 +3,7 @@
 //
 
 #include <include/model/CommandDrawMandala.hpp>
+#include <iostream>
 
 void CommandDrawMandala::draw(QPainter &painter) const {
     int angle = 360 / this->grid_number;
@@ -18,8 +19,8 @@ void CommandDrawMandala::draw(QPainter &painter) const {
             qpen.setColor(color);
         }
         if(mirror){
-            QPoint lastPointMirror(lastPointRotated.y(), lastPointRotated.x());
-            QPoint endPointMirror(endPointRotated.y(), endPointRotated.x());
+            QPoint lastPointMirror = mirrorPoint(lastPointRotated, center);
+            QPoint endPointMirror = mirrorPoint(endPointRotated, center);
             CommandDrawLine(lastPointMirror, endPointMirror, qpen).draw_command(painter);
         }
         CommandDrawLine(lastPointRotated, endPointRotated, qpen).draw_command(painter);
