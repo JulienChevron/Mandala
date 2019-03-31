@@ -10,4 +10,7 @@
 
 QPoint rotatePoint(const QPoint &point, const QPoint &center, int degree);
 
+QPoint mirrorPoint(const QPoint &point, const QPoint &center, int degree);
+
+
 #endif //MANDALA_TRANSFORM_HPP

@@ -17,7 +17,13 @@ void CommandDrawMandala::draw(QPainter &painter) const {
             color.setHsv((h + angle * i), s, v, a);
             qpen.setColor(color);
         }
+        if(mirror){
+            QPoint lastPointMirror(lastPointRotated.y(), lastPointRotated.x());
+            QPoint endPointMirror(endPointRotated.y(), endPointRotated.x());
+            CommandDrawLine(lastPointMirror, endPointMirror, qpen).draw_command(painter);
+        }
         CommandDrawLine(lastPointRotated, endPointRotated, qpen).draw_command(painter);
+
     }
 }
 
@@ -27,13 +33,15 @@ CommandDrawMandala::CommandDrawMandala(
         const QPoint &center,
         uint grid_number,
         const QPen &pen,
-        bool color_rainbow) :
+        bool color_rainbow,
+        bool mirror) :
         coord1(coord1),
         coord2(coord2),
         center(center),
         grid_number(grid_number),
         pen(pen),
-        color_rainbow(color_rainbow) {}
+        color_rainbow(color_rainbow),
+        mirror(mirror){}
 
 
 

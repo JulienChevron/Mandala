@@ -16,14 +16,15 @@ private:
     const QPoint &coord2;
     const QPoint &center;
     uint grid_number;
-    const QPen &pen; // to make a copy
+    const QPen &pen;
     bool color_rainbow;
+    bool mirror;
 public:
 
 protected:
 public:
     CommandDrawMandala(const QPoint &coord1, const QPoint &coord2, const QPoint &center, uint grid_number,
-                       const QPen &pen, bool color_rainbow);
+                       const QPen &pen, bool color_rainbow, bool mirror);
 
 protected:
     void draw(QPainter &painter) const override;

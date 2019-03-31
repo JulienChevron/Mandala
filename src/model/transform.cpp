@@ -11,3 +11,11 @@ QPoint rotatePoint(const QPoint &point, const QPoint &center, int degree) {
             .translate(-center.x(), -center.y())
             .map(point);
 }
+
+QPoint mirrorPoint(const QPoint &point, const QPoint &center, int degree){
+    return QTransform()
+            .translate(center.x(), center.y())
+            .rotate(degree)
+            .translate(-center.x(), -center.y())
+            .map(point);
+}

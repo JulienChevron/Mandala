@@ -77,7 +77,7 @@ void DrawingAreaWidget::drawLineTo(const QPoint &endPoint, QPen pen) {
         commandInvoker.draw(CommandDrawLine(lastPoint, endPoint, pen));
     } else {
         commandInvoker.draw(
-                CommandDrawMandala(lastPoint, endPoint, center, static_cast<uint>(gridNumber), pen, rainbow));
+                CommandDrawMandala(lastPoint, endPoint, center, static_cast<uint>(gridNumber), pen, rainbow, mirror));
     }
     update();
     lastPoint = endPoint;
