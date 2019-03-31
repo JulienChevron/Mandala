@@ -28,9 +28,8 @@ Le logiciel permet actuellement de :
 
 Il reste à implémenter : 
 - Un effet miroir
-- Une transparence de la grille modifiable
 
-## 3. Repartition des tâches
+## 3. Répartition des tâches
 
 - Interface : Julien Chevron
 - Dessin : Julien Chevron
