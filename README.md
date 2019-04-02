@@ -2,6 +2,10 @@
 
 Mandala for ENSICAEN
 
+Auteurs : 
+- Julien Chevron
+- Pierre Chopinet
+
 Pour compiler et lancer le logiciel : 
 ```bash
 mkdir build
@@ -22,7 +26,6 @@ Le logiciel permet actuellement de :
 - Changer la taille de l'image
 - D'afficher une grille pour simplifier le dessin avec le mandala
 - De revenir à un état précèdent du dessin avec un système de "undo/redo"
-
 
 ## 2. Fonctionnalités à implémenter
 
@@ -45,6 +48,9 @@ Il reste à implémenter :
 
 ![example](img/example.png)
 
+
+
 ## 6. Divers
 
 Merci à l'ensicaen pour ce super projet !
+
