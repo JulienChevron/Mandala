@@ -28,6 +28,8 @@ private:
 
 signals:
     void sendBackgroundColor(QColor*);
+    void changeLineWidth(int lineWidth);
+
 
 public slots:
     void setLineWidth(int lineWidth);

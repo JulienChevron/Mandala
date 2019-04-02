@@ -24,11 +24,13 @@ private:
     QPen *pen;
     QPen *gridPen;
     QPen *mirrorPen;
+    QPen *erasePen;
     bool grid = false;
     int gridNumber = 1;
     float gridOpacity = 1.0;
     bool mirror = false;
     bool rainbow = false;
+    bool erase = false;
 
     void drawLineTo(const QPoint &endPoint, QPen pen);
 
@@ -74,6 +76,11 @@ public slots:
     void setRainbow(bool rainbow);
 
     void setBackgroundColor(QColor* color);
+
+    void setErase(bool erase);
+
+    void setLineWidth(int width);
+
 
 };
 
