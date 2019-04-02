@@ -16,8 +16,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionSave_as, SIGNAL(triggered()), ui->center->getUi()->drawingArea, SLOT(saveCurrentImage()));
     connect(ui->top->getUi()->clearButton, SIGNAL(pressed()),  ui->center->getUi()->drawingArea, SLOT(clearImage()));
     connect(ui->top->getUi()->grid_slider, SIGNAL(valueChanged(int)),  ui->center->getUi()->drawingArea, SLOT(setGridOpacity(int)));
-    connect(ui->top->getUi()->grid, SIGNAL(clicked(bool)),  ui->center->getUi()->drawingArea, SLOT(setGrid(bool)));
-    connect(ui->top->getUi()->mirror, SIGNAL(clicked(bool)),  ui->center->getUi()->drawingArea, SLOT(setMirror(bool)));
+    connect(ui->top->getUi()->grid_btn, SIGNAL(clicked(bool)),  ui->center->getUi()->drawingArea, SLOT(setGrid(bool)));
+    connect(ui->top->getUi()->mirror_btn, SIGNAL(clicked(bool)),  ui->center->getUi()->drawingArea, SLOT(setMirror(bool)));
     connect(ui->top->getUi()->spinBox, SIGNAL(valueChanged(int)),  ui->center->getUi()->drawingArea, SLOT(setGridSlice(int)));
     connect(ui->bottom->getUi()->rainbow_btn, SIGNAL(clicked(bool)),  ui->center->getUi()->drawingArea, SLOT(setRainbow(bool)));
     connect(ui->bottom->getUi()->erase_btn, SIGNAL(clicked(bool)),  ui->center->getUi()->drawingArea, SLOT(setErase(bool)));
