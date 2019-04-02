@@ -77,15 +77,17 @@ void DrawingAreaWidget::paintEvent(QPaintEvent *event) {
 
 void DrawingAreaWidget::drawLineTo(const QPoint &endPoint, QPen pen) {
     QPoint center(commandInvoker.getCurrentImage().width() / 2, commandInvoker.getCurrentImage().height() / 2);
+    QPen drawingPen;
     if(erase){
-        commandInvoker.draw(CommandDrawLine(lastPoint, endPoint, *erasePen));
-    }else{
-        if (gridNumber == 1) {
-            commandInvoker.draw(CommandDrawLine(lastPoint, endPoint, pen));
-        } else {
-            commandInvoker.draw(
-                    CommandDrawMandala(lastPoint, endPoint, center, static_cast<uint>(gridNumber), pen, rainbow, mirror));
-        }
+        drawingPen = *erasePen;
+    }else {
+        drawingPen = pen;
+    }
+    if (gridNumber == 1) {
+        commandInvoker.draw(CommandDrawLine(lastPoint, endPoint, drawingPen));
+    } else {
+        commandInvoker.draw(
+                CommandDrawMandala(lastPoint, endPoint, center, static_cast<uint>(gridNumber), drawingPen, rainbow, mirror));
     }
     update();
     lastPoint = endPoint;
