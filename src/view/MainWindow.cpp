@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->top->getUi()->spinBox, SIGNAL(valueChanged(int)),  ui->center->getUi()->drawingArea, SLOT(setGridSlice(int)));
     connect(ui->bottom->getUi()->rainbow_btn, SIGNAL(clicked(bool)),  ui->center->getUi()->drawingArea, SLOT(setRainbow(bool)));
     connect(ui->bottom->getUi()->erase_btn, SIGNAL(clicked(bool)),  ui->center->getUi()->drawingArea, SLOT(setErase(bool)));
+    connect(ui->bottom->getUi()->line_btn, SIGNAL(clicked(bool)),  ui->center->getUi()->drawingArea, SLOT(setLineMode(bool)));
     connect(ui->top, SIGNAL(sendSize(QSize*)), ui->center->getUi()->drawingArea, SLOT(setSize(QSize*)));
     connect(ui->bottom, SIGNAL(sendBackgroundColor(QColor*)), ui->center->getUi()->drawingArea, SLOT(setBackgroundColor(QColor*)));
     connect(ui->bottom, SIGNAL(changeLineWidth(int)), ui->center->getUi()->drawingArea, SLOT(setLineWidth(int)));

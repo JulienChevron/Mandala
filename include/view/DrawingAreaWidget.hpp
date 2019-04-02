@@ -7,7 +7,7 @@
 
 
 #include <QGraphicsView>
-#include <include/model/Drawing.hpp>
+#include <include/model/Drawer.hpp>
 
 class DrawingAreaWidget : public QWidget {
 Q_OBJECT
@@ -31,6 +31,8 @@ private:
     bool mirror = false;
     bool rainbow = false;
     bool erase = false;
+    bool line = false;
+
 
     void drawLineTo(const QPoint &endPoint, QPen pen);
 
@@ -83,6 +85,8 @@ public slots:
     void setErase(bool erase);
 
     void setLineWidth(int width);
+
+    void setLineMode(bool line);
 
 
 

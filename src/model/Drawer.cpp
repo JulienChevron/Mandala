@@ -2,7 +2,7 @@
 // Created by chevron on 13/03/19.
 //
 
-#include <include/model/Drawing.hpp>
+#include <include/model/Drawer.hpp>
 #include <iostream>
 
 #define MAX_UNDO 100

@@ -10,7 +10,7 @@
 #include <QImage>
 #include <QPoint>
 #include <QtWidgets/QWidget>
-#include <include/model/Drawing.hpp>
+#include <include/model/Drawer.hpp>
 #include "ui_CenterWidget.h"
 
 

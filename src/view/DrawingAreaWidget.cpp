@@ -19,7 +19,7 @@ DrawingAreaWidget::DrawingAreaWidget(QWidget *parent) :
         pen(QPenSingleton::Instance()),
         gridPen(new QPen(Qt::gray, 5, Qt::DashDotLine)),
         mirrorPen(new QPen(Qt::gray, 2, Qt::DashDotLine)),
-        erasePen(new QPen(Qt::white, 5)){
+        erasePen(new QPen(Qt::white, 5,  Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin)){
     setAttribute(Qt::WA_StaticContents);
     setCursor(Qt::CrossCursor);
 }
@@ -54,8 +54,11 @@ void DrawingAreaWidget::mousePressEvent(QMouseEvent *event) {
 }
 
 void DrawingAreaWidget::mouseMoveEvent(QMouseEvent *event) {
-    if ((event->buttons() & Qt::LeftButton))
-        drawLineTo(event->pos(), *pen);
+    if ((event->buttons() & Qt::LeftButton)){
+        if(!line){
+            drawLineTo(event->pos(), *pen);
+        }
+    }
 }
 
 void DrawingAreaWidget::mouseReleaseEvent(QMouseEvent *event) {
@@ -87,7 +90,6 @@ void DrawingAreaWidget::drawLineTo(const QPoint &endPoint, QPen pen) {
     update();
     lastPoint = endPoint;
 }
-
 
 void DrawingAreaWidget::resizeImage(const QSize &newSize) {
     QImage newImage(newSize, QImage::Format_RGB32);
@@ -221,6 +223,11 @@ void DrawingAreaWidget::setErase(bool erase) {
 void DrawingAreaWidget::setLineWidth(int width) {
     erasePen->setWidth(width);
 }
+
+void DrawingAreaWidget::setLineMode(bool line) {
+    this->line = line;
+}
+
 
 
 
