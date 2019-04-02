@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>960</width>
-    <height>744</height>
+    <width>1400</width>
+    <height>1000</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -95,8 +95,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>960</width>
-     <height>30</height>
+     <width>1400</width>
+     <height>25</height>
     </rect>
    </property>
    <property name="nativeMenuBar">
@@ -106,6 +106,7 @@
     <property name="title">
      <string>&amp;File</string>
     </property>
+    <addaction name="actionOpen_2"/>
     <addaction name="actionSave_as"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
@@ -190,6 +191,22 @@
    </property>
    <property name="shortcut">
     <string>F1</string>
+   </property>
+  </action>
+  <action name="actionOpenImage">
+   <property name="text">
+    <string>Open</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionOpen_2">
+   <property name="text">
+    <string>Open</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
   </action>
  </widget>

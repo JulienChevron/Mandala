@@ -29,7 +29,7 @@ bool DrawingAreaWidget::openImage(const QString &fileName) {
     if (!loadedImage.load(fileName))
         return false;
     QSize newSize = loadedImage.size().expandedTo(size());
-    resizeImage(newSize);
+    setSize(&newSize);
     commandInvoker.setCurrentImage(loadedImage);
     update();
     return true;
@@ -112,6 +112,12 @@ void DrawingAreaWidget::saveCurrentImage() {
                                                     tr("Images (*.png *.jpg)"));
     std::cout << fileName.toStdString() << std::endl;
     saveImage(fileName);
+}
+
+void DrawingAreaWidget::openNewImage(){
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open images"),
+                                                    tr("Images (*.png *.jpg)"));
+    openImage(fileName);
 }
 
 void DrawingAreaWidget::resizeFilter(const QSize &newSize) {

@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::MainWindow) {
     ui->setupUi(this);
+    connect(ui->actionOpen_2, SIGNAL(triggered()), ui->center->getUi()->drawingArea, SLOT(openNewImage()));
     connect(ui->actionUndo, SIGNAL(triggered()), ui->center->getUi()->drawingArea, SLOT(undo()));
     connect(ui->actionRedo, SIGNAL(triggered()), ui->center->getUi()->drawingArea, SLOT(redo()));
     connect(ui->actionSave_as, SIGNAL(triggered()), ui->center->getUi()->drawingArea, SLOT(saveCurrentImage()));

@@ -54,6 +54,7 @@ protected:
 
 signals:
 
+
 public slots:
     void clearImage();
 
@@ -62,6 +63,8 @@ public slots:
     void redo();
 
     void saveCurrentImage();
+
+    void openNewImage();
 
     void setSize(QSize *size);
 
@@ -80,6 +83,8 @@ public slots:
     void setErase(bool erase);
 
     void setLineWidth(int width);
+
+
 
 
 };
