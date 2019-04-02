@@ -42,6 +42,7 @@ bool DrawingAreaWidget::saveImage(const QString &fileName) {
 
 void DrawingAreaWidget::clearImage() {
     commandInvoker.clearImage();
+    erasePen->setColor(Qt::white);
     update();
 }
 

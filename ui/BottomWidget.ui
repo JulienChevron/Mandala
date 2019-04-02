@@ -59,7 +59,17 @@
    <item>
     <widget class="QPushButton" name="erase_btn">
      <property name="text">
-      <string>Erase</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../img/eraser.png</normaloff>../img/eraser.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
      </property>
      <property name="checkable">
       <bool>true</bool>
@@ -69,7 +79,17 @@
    <item>
     <widget class="QPushButton" name="color_btn">
      <property name="text">
-      <string>Color</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../img/color.png</normaloff>../img/color.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
      </property>
     </widget>
    </item>
@@ -82,6 +102,12 @@
       <iconset>
        <normaloff>../img/button.png</normaloff>../img/button.png</iconset>
      </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
+     </property>
      <property name="checkable">
       <bool>true</bool>
      </property>
@@ -90,7 +116,17 @@
    <item>
     <widget class="QPushButton" name="background_btn">
      <property name="text">
-      <string>Background</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../img/background.png</normaloff>../img/background.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
      </property>
     </widget>
    </item>
