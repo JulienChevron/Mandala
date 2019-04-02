@@ -18,12 +18,12 @@ make
 ## 1. Fonctionnalités du logiciel
 
 Le logiciel permet actuellement de : 
-- Dessiner
+- Dessiner au crayon et avec des lignes
 - Dessiner avec l'effet mandala/miroir
 - De choisir la taille et la couleur de son crayon
-- Dessiner avec un effet "rainbow"
-- Sauvegarder ses images
-- Changer la taille de l'image
+- Dessiner avec un effet *rainbow*
+- Sauvegarder/Ouvrir des images
+- Changer la taille de l'image et la couleur de fond
 - D'afficher une grille pour simplifier le dessin avec le mandala
 - De revenir à un état précèdent du dessin avec un système de "undo/redo"
 
