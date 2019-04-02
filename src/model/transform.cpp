@@ -5,7 +5,7 @@
 #include <include/model/transform.hpp>
 #include <cmath>
 
-QPoint rotatePoint(const QPoint &point, const QPoint &center, int degree) {
+QPoint rotatePoint(const QPoint &point, const QPoint &center, double degree) {
     return QTransform()
             .translate(center.x(), center.y())
             .rotate(degree)

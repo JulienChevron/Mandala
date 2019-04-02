@@ -6,16 +6,16 @@
 #include <iostream>
 
 void CommandDrawMandala::draw(QPainter &painter) const {
-    int angle = 360 / this->grid_number;
+    double angle = 360.0 / this->grid_number;
     QColor color = pen.color();
     QPen qpen = pen;
     int h, s, v, a;
     color.getHsv(&h, &s, &v, &a);
     for (int i = 0; i < grid_number; ++i) {
-        QPoint lastPointRotated = rotatePoint(coord1, center, angle * i);
-        QPoint endPointRotated = rotatePoint(coord2, center, angle * i);
+        QPoint lastPointRotated = rotatePoint(coord1, center, static_cast<int>(angle * i));
+        QPoint endPointRotated = rotatePoint(coord2, center, static_cast<int>(angle * i));
         if (color_rainbow) {
-            color.setHsv((h + angle * i), s, v, a);
+            color.setHsv(static_cast<int>(h + angle * i), s, v, a);
             qpen.setColor(color);
         }
         if (mirror) {

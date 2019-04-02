@@ -126,8 +126,8 @@ void DrawingAreaWidget::displayGrid() {
     QPoint center(commandInvoker.getFilterImage().width() / 2, commandInvoker.getFilterImage().width() / 2);
     QPoint first(-(commandInvoker.getFilterImage().width() * 2), commandInvoker.getFilterImage().width() / 2);
     commandInvoker.drawOnFilter(CommandDrawGrid(center, first, *gridPen, gridNumber, gridOpacity));
-    if(mirror){
-        int angle = (360 / gridNumber) / 2;
+    if (mirror) {
+        double angle = (360.0 / gridNumber) / 2.0;
         QPoint firstMirror = rotatePoint(first, center, angle);
         commandInvoker.drawOnFilter(CommandDrawGrid(center, firstMirror, *mirrorPen, gridNumber, gridOpacity));
     }
@@ -174,7 +174,7 @@ void DrawingAreaWidget::setGridSlice(int number) {
 }
 
 void DrawingAreaWidget::setGridOpacity(int opacity) {
-    this->gridOpacity = (float) opacity/100;
+    this->gridOpacity = (float) opacity / 100;
     if (grid) {
         displayGrid();
     }

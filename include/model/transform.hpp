@@ -8,7 +8,7 @@
 #include <QPoint>
 #include <QTransform>
 
-QPoint rotatePoint(const QPoint &point, const QPoint &center, int degree);
+QPoint rotatePoint(const QPoint &point, const QPoint &center, double degree);
 
 QPoint mirrorPoint(const QPoint &point, const QPoint &center);
 
