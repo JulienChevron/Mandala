@@ -27,7 +27,7 @@ Le logiciel permet actuellement de :
 ## 2. Fonctionnalités à implémenter
 
 Il reste à implémenter : 
-- Un effet miroir
+- Les fonctionnalités bonus
 
 ## 3. Répartition des tâches
 
