@@ -18,7 +18,8 @@ DrawingAreaWidget::DrawingAreaWidget(QWidget *parent) :
         QWidget(parent),
         pen(QPenSingleton::Instance()),
         gridPen(new QPen(Qt::gray, 7, Qt::DashDotLine)),
-        mirrorPen(new QPen(Qt::gray, 3, Qt::DashDotLine)) {
+        mirrorPen(new QPen(Qt::gray, 3, Qt::DashDotLine)),
+        erasePen(new QPen(Qt::white, 5)){
     setAttribute(Qt::WA_StaticContents);
     setCursor(Qt::CrossCursor);
 }
@@ -27,7 +28,6 @@ bool DrawingAreaWidget::openImage(const QString &fileName) {
     QImage loadedImage;
     if (!loadedImage.load(fileName))
         return false;
-
     QSize newSize = loadedImage.size().expandedTo(size());
     resizeImage(newSize);
     commandInvoker.setCurrentImage(loadedImage);
@@ -73,11 +73,15 @@ void DrawingAreaWidget::paintEvent(QPaintEvent *event) {
 
 void DrawingAreaWidget::drawLineTo(const QPoint &endPoint, QPen pen) {
     QPoint center(commandInvoker.getCurrentImage().width() / 2, commandInvoker.getCurrentImage().height() / 2);
-    if (gridNumber == 1) {
-        commandInvoker.draw(CommandDrawLine(lastPoint, endPoint, pen));
-    } else {
-        commandInvoker.draw(
-                CommandDrawMandala(lastPoint, endPoint, center, static_cast<uint>(gridNumber), pen, rainbow, mirror));
+    if(erase){
+        commandInvoker.draw(CommandDrawLine(lastPoint, endPoint, *erasePen));
+    }else{
+        if (gridNumber == 1) {
+            commandInvoker.draw(CommandDrawLine(lastPoint, endPoint, pen));
+        } else {
+            commandInvoker.draw(
+                    CommandDrawMandala(lastPoint, endPoint, center, static_cast<uint>(gridNumber), pen, rainbow, mirror));
+        }
     }
     update();
     lastPoint = endPoint;
@@ -195,11 +199,20 @@ void DrawingAreaWidget::setRainbow(bool rainbow) {
 
 void DrawingAreaWidget::setBackgroundColor(QColor *color) {
     QImage newImage(commandInvoker.getCurrentImage().size(), QImage::Format_RGB32);
+    erasePen->setColor(*color);
     newImage.fill(*color);
     QPainter painter(&newImage);
     painter.drawImage(QPoint(0, 0), newImage);
     commandInvoker.setCurrentImage(newImage);
     update();
+}
+
+void DrawingAreaWidget::setErase(bool erase) {
+    this->erase = erase;
+}
+
+void DrawingAreaWidget::setLineWidth(int width) {
+    erasePen->setWidth(width);
 }
 
 

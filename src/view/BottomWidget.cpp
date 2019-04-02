@@ -21,6 +21,7 @@ BottomWidget::BottomWidget(QWidget *parent) :
 void BottomWidget::setLineWidth(int lineWidth) {
     BottomWidget::pen->setWidth(lineWidth);
     drawDot();
+    emit changeLineWidth(lineWidth);
 }
 
 void BottomWidget::chooseColor() {

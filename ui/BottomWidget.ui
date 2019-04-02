@@ -57,6 +57,16 @@
     </widget>
    </item>
    <item>
+    <widget class="QPushButton" name="erase_btn">
+     <property name="text">
+      <string>Erase</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QPushButton" name="color_btn">
      <property name="text">
       <string>Color</string>
