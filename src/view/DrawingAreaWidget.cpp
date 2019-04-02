@@ -17,8 +17,8 @@
 DrawingAreaWidget::DrawingAreaWidget(QWidget *parent) :
         QWidget(parent),
         pen(QPenSingleton::Instance()),
-        gridPen(new QPen(Qt::gray, 7, Qt::DashDotLine)),
-        mirrorPen(new QPen(Qt::gray, 3, Qt::DashDotLine)),
+        gridPen(new QPen(Qt::gray, 5, Qt::DashDotLine)),
+        mirrorPen(new QPen(Qt::gray, 2, Qt::DashDotLine)),
         erasePen(new QPen(Qt::white, 5)){
     setAttribute(Qt::WA_StaticContents);
     setCursor(Qt::CrossCursor);
