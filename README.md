@@ -15,13 +15,13 @@ make
 
 Le logiciel permet actuellement de : 
 - Dessiner
-- Dessiner avec l'effet mandala
+- Dessiner avec l'effet mandala/miroir
 - De choisir la taille et la couleur de son crayon
 - Dessiner avec un effet "rainbow"
 - Sauvegarder ses images
 - Changer la taille de l'image
 - D'afficher une grille pour simplifier le dessin avec le mandala
-- De revenir à un état précedent du dessin avec un système de "undo/redo"
+- De revenir à un état précèdent du dessin avec un système de "undo/redo"
 
 
 ## 2. Fonctionnalités à implémenter
